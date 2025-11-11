@@ -1,0 +1,82 @@
+/* ESTILOS GENERALES*/
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #fbf4dc;
+    color: #000000;
+}
+
+/* ENCABEZADO  */
+header {
+    text-align: center;
+    background-color: #d0c8ae;
+    color: #2c3726;   /*color del texto del encabezado*/
+    padding: 2rem 1rem;
+}
+
+header h1 {
+    margin-bottom: 0.5rem;
+    font-size: 2rem;
+}
+
+/* CATALOGO  */
+.catalogo {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    padding: 2rem;
+    max-width: 1100px;
+    margin: auto;
+}
+
+/*TARJETAS DE CAFE*/
+.tarjeta {
+    background-color: #d0c8ae;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.tarjeta:hover {
+    transform: translateY(-5px);
+}
+
+.tarjeta img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.tarjeta h3 {
+    margin: 1rem;
+    font-size: 1.2rem;
+    color: #4e342e;
+}
+
+.tarjeta p {
+    margin: 0 1rem 0.5rem;
+    font-size: 0.95rem;
+}
+
+.tarjeta .descripcion {
+    font-style: italic;
+    color: #555;
+}
+
+.tarjeta .precio {
+    display: block;
+    margin: 1rem;
+    font-weight: bold;
+    color: #2e7d32;
+}
+
+/* PIE DE PÁGINA*/
+footer {
+    background-color: #777373;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+    font-size: 0.9rem;
+}
