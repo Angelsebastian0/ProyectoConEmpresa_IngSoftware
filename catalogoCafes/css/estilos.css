@@ -1,3 +1,26 @@
+
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+
+main {
+    flex: 1;
+}
+
+
 /* ESTILOS GENERALES*/
 body {
     font-family: 'Poppins', sans-serif;
@@ -79,4 +102,116 @@ footer {
     text-align: center;
     padding: 1rem;
     font-size: 0.9rem;
+}
+
+/* NAVBAR PROFESIONAL RESPONSIVO */
+.navbar {
+    width: 100%;
+    background-color: #3c2f2f;
+    padding: 1rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap; /* <--- ESTA LÍNEA ES CRÍTICA */
+    gap: 1rem;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 1.5rem;
+    flex-wrap: wrap; /* <---- EVITA DESBORDES */
+    padding: 0;
+    margin: 0;
+}
+
+
+/* LOGO */
+.nav-logo {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #f4eee3; /* Beige suave */
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #f4eee3;
+    font-weight: 500;
+    font-size: 1rem;
+    transition: color 0.3s ease, border-bottom 0.3s ease;
+    padding-bottom: 0.3rem;
+}
+
+/* EFECTO HOVER */
+.nav-links a:hover {
+    color: #d7c7a5;
+    border-bottom: 2px solid #d7c7a5;
+}
+
+/* ENLACE ACTIVO */
+.nav-links .active {
+    border-bottom: 2px solid #d7c7a5;
+}
+
+/* HERO */
+.hero {
+    text-align: center;
+    background-color: #d0c8ae;
+    padding: 3rem 1rem;
+    color: #2c2c2c;
+}
+
+/* CONTENIDO */
+.contenido {
+    text-align: center;
+    padding: 2.5rem 1rem;
+}
+
+.botones-home {
+    margin-top: 2rem;
+}
+
+/* BOTONES */
+.btn-principal,
+.btn-secundario {
+    display: inline-block;
+    padding: 0.9rem 1.8rem;
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* BOTÓN PRINCIPAL */
+.btn-principal {
+    background-color: #4e342e;
+    color: #fff;
+}
+
+.btn-principal:hover {
+    background-color: #3a2722;
+    transform: translateY(-2px);
+}
+
+/* BOTÓN SECUNDARIO */
+.btn-secundario {
+    background-color: #c6b69e;
+    color: #3c2f2f;
+}
+
+.btn-secundario:hover {
+    background-color: #b5a487;
+    transform: translateY(-2px);
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .nav-links {
+        gap: 1rem;
+    }
 }
