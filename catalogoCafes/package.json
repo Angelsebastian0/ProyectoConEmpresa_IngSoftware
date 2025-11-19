@@ -1,0 +1,12 @@
+{
+  "name": "cafeteria",
+  "version": "1.0.0",
+  "main": "server/server.js",
+  "type": "module",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "nodemon": "^3.1.11"
+  }
+}
