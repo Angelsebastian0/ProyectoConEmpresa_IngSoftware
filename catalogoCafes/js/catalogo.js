@@ -1,3 +1,5 @@
+//catalogo.js
+
 const contenedor = document.querySelector(".catalogo");
 
 fetch("http://localhost:3000/productos")

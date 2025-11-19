@@ -1,3 +1,4 @@
+//producto_form.js
 const form = document.querySelector("#form-producto");
 const params = new URLSearchParams(window.location.search);
 const id = params.get("id");

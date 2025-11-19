@@ -1,3 +1,5 @@
+//inventario.js
+
 const tabla = document.querySelector("#tabla-inventario tbody");
 
 function cargarInventario() {
