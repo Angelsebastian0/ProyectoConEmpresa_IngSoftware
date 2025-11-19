@@ -4,12 +4,18 @@ import express from "express";
 import fs from "fs";
 import cors from "cors";
 import bodyParser from "body-parser";
+import path from "path";
+import { fileURLToPath } from "url";
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 const app = express();
+app.use(express.static(path.join(__dirname, "..")));
 app.use(cors());
 app.use(bodyParser.json());
 
-const DB_PATH = "./server/database.json";
+const DB_PATH = "catalogoCafes/server/database.json";
+
 
 // Leer DB
 function readDB() {
@@ -26,6 +32,21 @@ app.get("/productos", (req, res) => {
   const db = readDB();
   res.json(db.productos);
 });
+
+/* GET – obtener producto por ID */
+app.get("/productos/:id", (req, res) => {
+  const db = readDB();
+  const id = parseInt(req.params.id);
+
+  const producto = db.productos.find(p => p.id === id);
+
+  if (!producto) {
+    return res.status(404).json({ error: "Producto no encontrado" });
+  }
+
+  res.json(producto);
+});
+
 
 /* POST – agregar producto */
 app.post("/productos", (req, res) => {

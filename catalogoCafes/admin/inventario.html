@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Inventario - Admin</title>
+  <link rel="stylesheet" href="../css/estilos.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-inner">
+      <div class="nav-logo">Crossing Families Coffee — Admin</div>
+      <ul class="nav-links">
+        <li><a href="../index.html">Inicio</a></li>
+        <li><a href="../catalogo.html">Catálogo</a></li>
+        <li><a href="inventario.html" class="active">Inventario</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <header class="hero hero-small">
+    <h1>Inventario de Productos</h1>
+    <p>Administra productos: editar, eliminar o crear nuevos.</p>
+  </header>
+
+  <main style="max-width:1100px;margin:20px auto;padding:0 16px;display:grid;grid-template-columns:1fr 320px;gap:18px;">
+    <section class="lista-productos" style="padding:16px;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+        <h2 style="margin:0;">Productos</h2>
+        <button id="btn-agregar" class="btn-principal">Agregar producto</button>
+      </div>
+
+      <div id="inventario-list" class="catalogo"></div>
+    </section>
+
+    <aside class="panel-info">
+      <h3>Panel</h3>
+      <p>Haz clic en <strong>Editar</strong> para modificar un producto o en <strong>Eliminar</strong> para quitarlo.</p>
+      <p>Al editar podrás ajustar el <em>stock</em> con botones + / -.</p>
+      <div style="margin-top:12px;font-size:0.9rem;color:#444;">Recuerda: los cambios se guardan en <code>database.json</code> cuando tu servidor está en ejecución.</div>
+    </aside>
+  </main>
+
+  <!-- Modal edición/creación -->
+  <div id="modal" class="modal hidden" aria-hidden="true">
+    <div class="modal-content">
+      <header class="modal-header">
+        <h2 id="modal-title">Agregar Producto</h2>
+        <button id="modal-close" class="close" title="Cerrar">&times;</button>
+      </header>
+
+      <form id="producto-form" class="form-modal">
+        <input type="hidden" id="producto-id">
+
+        <label for="nombre">Nombre</label>
+        <input id="nombre" type="text" required>
+
+        <label for="origen">Origen</label>
+        <input id="origen" type="text">
+
+        <label for="descripcion">Descripción</label>
+        <textarea id="descripcion" rows="3"></textarea>
+
+        <label for="precio">Precio</label>
+        <input id="precio" type="number" min="0" step="1" required>
+
+        <label for="imagen">Imagen (URL)</label>
+        <input id="imagen" type="text">
+
+        <label for="cantidad">Stock</label>
+        <div class="cantidad-control">
+          <button type="button" id="menos-cant" class="small">-</button>
+          <input id="cantidad" type="number" min="0" step="1" value="0">
+          <button type="button" id="mas-cant" class="small">+</button>
+        </div>
+
+        <div class="form-actions" style="margin-top:12px;">
+          <button type="submit" class="btn-principal">Guardar</button>
+          <button type="button" id="cancelar-edicion" class="btn-secundario">Cancelar</button>
+        </div>
+      </form>
+
+      <aside class="preview-box">
+        <h3>Vista previa</h3>
+        <div id="preview" class="tarjeta" style="display:flex;flex-direction:column;">
+          <img id="preview-img" src="" alt="Vista previa" style="height:150px;object-fit:cover;">
+          <div class="card-body" style="padding:12px;">
+            <h3 id="preview-nombre">Nombre</h3>
+            <p id="preview-origen" style="margin:0.2rem 0;color:#444;font-size:0.95rem;">Origen</p>
+            <p id="preview-desc" class="descripcion" style="margin-top:0.6rem;">Descripción</p>
+            <span id="preview-precio" class="precio" style="margin-top:8px;">$0</span>
+            <div id="preview-stock" style="margin-top:6px;font-size:0.9rem;color:#333;">Stock: 0</div>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <!-- Confirm delete modal -->
+  <div id="confirm-modal" class="modal hidden" aria-hidden="true">
+    <div class="modal-content small">
+      <h3>¿Eliminar este producto?</h3>
+      <p id="confirm-text"></p>
+      <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:12px;">
+        <button id="confirm-cancel" class="btn-secundario">Cancelar</button>
+        <button id="confirm-delete" class="btn-danger">Eliminar</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="inventario.js"></script>
+</body>
+</html>

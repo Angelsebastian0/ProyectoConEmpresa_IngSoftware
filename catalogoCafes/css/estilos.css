@@ -215,3 +215,61 @@ footer {
         gap: 1rem;
     }
 }
+
+/* ----------------- Estilos para Admin / Inventario ----------------- */
+/* Reutiliza .tarjeta existente para coherencia visual */
+
+.lista-productos { background: #fff; border-radius: 10px; box-shadow: 0 6px 18px rgba(0,0,0,0.06); }
+.panel-info { background: #fff; border-radius: 10px; padding: 16px; box-shadow: 0 6px 18px rgba(0,0,0,0.04); }
+
+/* Controles en las tarjetas (acciones) */
+.card-actions button { padding: 8px 10px; border-radius: 8px; border: none; cursor: pointer; }
+.card-actions .btn-editar { background: #c6b69e; color: #2c2c2c; }
+.card-actions .btn-eliminar { background: #d9534f; color: #fff; }
+
+/* Modal overlay */
+.modal {
+  position: fixed;
+  inset: 0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background: rgba(0,0,0,0.35);
+  z-index: 9999;
+  padding: 16px;
+}
+.modal.hidden { display: none; }
+
+/* Modal content */
+.modal-content {
+  background: #fff;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 980px;
+  padding: 16px;
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 12px;
+}
+.modal-content.small { max-width: 520px; grid-template-columns: 1fr; }
+
+/* Header del modal */
+.modal-header { grid-column: 1 / -1; display:flex; align-items:center; justify-content:space-between; }
+.modal-header .close { background: transparent; border: none; font-size: 22px; cursor:pointer; }
+
+/* Form en modal */
+.form-modal { display:flex; flex-direction:column; gap:8px; }
+.form-modal input[type="text"], .form-modal input[type="number"], .form-modal textarea {
+  padding:8px 10px; border-radius:8px; border:1px solid #e5e7eb;
+}
+
+/* Control cantidad */
+.cantidad-control { display:flex; align-items:center; gap:8px; }
+.small { padding:6px 10px; border-radius:8px; border:1px solid #ddd; background:#fafafa; cursor:pointer; }
+
+/* Preview en modal */
+.preview-box h3 { margin-top:0; }
+.preview-card img { width:100%; height:150px; object-fit:cover; border-bottom-left-radius:8px; border-bottom-right-radius:8px; }
+
+/* Acciones del formulario */
+.form-actions { display:flex; gap:8px; justify-content:flex-end; }

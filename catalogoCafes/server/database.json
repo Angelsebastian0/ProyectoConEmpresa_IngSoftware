@@ -13,19 +13,28 @@
       "id": 2,
       "nombre": "Café Molido AA",
       "origen": "Nariño, Colombia",
-      "descripcion": "Seleccionado con calidad AA",
+      "descripcion": "Seleccionado",
       "precio": 33000,
-      "stock": 5,
+      "stock": 14,
       "imagen": "https://images.unsplash.com/photo-1509042239860-f550ce710b93"
     },
     {
-      "id": 3,
-      "nombre": "Café Tueste Medio",
+      "id": 1763530888066,
+      "nombre": "Café Molido AAAA",
       "origen": "Nariño, Colombia",
-      "descripcion": "CALIDAD A",
-      "precio": 18000,
-      "stock": 0,
-      "imagen": "https://images.unsplash.com/photo-1511920170033-f8396924c348"
+      "descripcion": "",
+      "precio": 33000,
+      "imagen": "https://images.unsplash.com/photo-1509042239860-f550ce710b93",
+      "stock": 0
+    },
+    {
+      "id": 1763530902238,
+      "nombre": "Café Molido ABASD",
+      "origen": "Nariño, Colombia",
+      "descripcion": "",
+      "precio": 33000,
+      "imagen": "https://images.unsplash.com/photo-1509042239860-f550ce710b93",
+      "stock": 0
     }
   ]
 }
