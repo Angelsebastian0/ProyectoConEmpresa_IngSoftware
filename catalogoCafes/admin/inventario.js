@@ -57,18 +57,26 @@ async function cargarProductos() {
       nodo.className = "tarjeta";
       nodo.innerHTML = `
         <img src="${p.imagen || ''}" alt="${escapeHtml(p.nombre)}">
-        <div class="card-body" style="padding:12px;">
+        <div class="card-body" style="padding:12px;display:flex;flex-direction:column;flex:1;">
           <h3>${escapeHtml(p.nombre)}</h3>
           <p style="margin:0.2rem 0;color:#444;font-size:0.95rem;">Origen: ${escapeHtml(p.origen || '')}</p>
           <p class="descripcion">${escapeHtml(p.descripcion || '')}</p>
+
           <span class="precio">$${Number(p.precio).toLocaleString()}</span>
+
+          <div style="margin-top:6px;font-size:0.95rem;color:#222;">
+            Unidades: <strong>${p.stock}</strong>
+          </div>
+
           ${Number(p.stock) === 0 ? "<p style='color:red;margin:6px 0 0'>Sin stock</p>" : ""}
+
           <div class="card-actions" style="margin-top:10px;display:flex;gap:8px;">
             <button class="btn-secundario btn-editar" data-id="${p.id}">Editar</button>
             <button class="btn-danger btn-eliminar" data-id="${p.id}">Eliminar</button>
           </div>
         </div>
       `;
+
       lista.appendChild(nodo);
     });
   } catch (err) {

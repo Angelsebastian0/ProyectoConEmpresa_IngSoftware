@@ -8,15 +8,23 @@
 </head>
 <body>
   <nav class="navbar">
-    <div class="nav-inner">
-      <div class="nav-logo">Crossing Families Coffee — Admin</div>
-      <ul class="nav-links">
-        <li><a href="../index.html">Inicio</a></li>
-        <li><a href="../catalogo.html">Catálogo</a></li>
-        <li><a href="inventario.html" class="active">Inventario</a></li>
-      </ul>
-    </div>
+      <div class="nav-inner">
+          <div class="nav-logo">Crossing Families Coffee — Admin</div>
+
+          <!-- botón hamburguesa -->
+          <button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false">
+              <span class="burger"></span>
+          </button>
+
+          <ul class="nav-links">
+              <li><a href="/index.html">Inicio</a></li>
+              <li><a href="/catalogo.html">Catálogo</a></li>
+              <li><a href="/anuncios.html">Anuncios</a></li>
+              <li><a href="inventario.html" class="active">Inventario</a></li>
+          </ul>
+      </div>
   </nav>
+
 
   <header class="hero hero-small">
     <h1>Inventario de Productos</h1>
@@ -34,10 +42,9 @@
     </section>
 
     <aside class="panel-info">
-      <h3>Panel</h3>
+      <h3>Manual de uso</h3>
       <p>Haz clic en <strong>Editar</strong> para modificar un producto o en <strong>Eliminar</strong> para quitarlo.</p>
       <p>Al editar podrás ajustar el <em>stock</em> con botones + / -.</p>
-      <div style="margin-top:12px;font-size:0.9rem;color:#444;">Recuerda: los cambios se guardan en <code>database.json</code> cuando tu servidor está en ejecución.</div>
     </aside>
   </main>
 
@@ -109,5 +116,9 @@
   </div>
 
   <script src="inventario.js"></script>
+  <footer>
+    <p>© 2025 Crossing Families Coffee | Todos los derechos reservados.</p>
+</footer>
+
 </body>
 </html>
