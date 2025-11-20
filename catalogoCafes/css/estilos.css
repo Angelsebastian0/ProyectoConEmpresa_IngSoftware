@@ -38,6 +38,23 @@ header {
     padding: 2rem 1rem;
 }
 
+/* Carrito estilos */
+#carrito-modal.hidden { display: none; }
+#carrito-modal.maximizado { width: 90vw; height: 90vh; top: 5vh; right: 5vw; }
+.carrito-icono { background: #d0c8ae; border-radius: 50%; padding: 10px; border: none; cursor: pointer; }
+.btn-finalizar, .btn-maximizar, .btn-minimizar, .btn-mas, .btn-menos, .btn-eliminar {
+    margin: 5px;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.btn-finalizar { background: #2c3726; color: #fff; }
+.btn-maximizar, .btn-minimizar { background: #d0c8ae; color: #2c3726; }
+.btn-mas { background: #b2e7b2; }
+.btn-menos { background: #f7c6c6; }
+.btn-eliminar { background: #e57373; color: #fff; }
+
 header h1 {
     margin-bottom: 0.5rem;
     font-size: 2rem;

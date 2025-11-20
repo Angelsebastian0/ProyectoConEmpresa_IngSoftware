@@ -1,4 +1,4 @@
-//server.js
+// server.js
 
 import express from "express";
 import fs from "fs";
@@ -7,15 +7,20 @@ import bodyParser from "body-parser";
 import path from "path";
 import { fileURLToPath } from "url";
 
+// Arreglo de rutas
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+
 const app = express();
+
+// Servir archivos estáticos desde catalogoCafes/
 app.use(express.static(path.join(__dirname, "..")));
+
 app.use(cors());
 app.use(bodyParser.json());
 
-const DB_PATH = "catalogoCafes/server/database.json";
-
+// Ruta ABSOLUTA a la base de datos
+const DB_PATH = path.join(__dirname, "database.json");
 
 // Leer DB
 function readDB() {
@@ -46,7 +51,6 @@ app.get("/productos/:id", (req, res) => {
 
   res.json(producto);
 });
-
 
 /* POST – agregar producto */
 app.post("/productos", (req, res) => {
@@ -87,4 +91,10 @@ app.delete("/productos/:id", (req, res) => {
   res.json({ mensaje: "Producto eliminado" });
 });
 
-app.listen(3000, () => console.log("Servidor iniciado en http://localhost:3000"));
+const PORT = 3000;
+const HOST = "0.0.0.0";
+
+app.listen(PORT, HOST, () => {
+  console.log(`Servidor accesible en: http://localhost:${PORT}`);
+  console.log(`Disponible para otros dispositivos en la red.`);
+});

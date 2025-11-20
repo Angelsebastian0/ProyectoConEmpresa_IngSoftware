@@ -16,7 +16,15 @@ fetch("http://localhost:3000/productos")
             <p>Origen: ${p.origen}</p>
             <p class="descripcion">${p.descripcion}</p>
             <span class="precio">$${p.precio}</span>
-            ${p.stock === 0 ? "<p style='color:red'>Sin stock</p>" : ""}
+            ${p.stock === 0 ? "<p style='color:red'>Sin stock</p>" : `
+              <button 
+                class='btn-agregar-carrito' 
+                data-id='${p.id}' 
+                data-nombre='${p.nombre}' 
+                data-precio='${p.precio}'>
+                Agregar al carrito
+              </button>
+            `}
           </div>
         </article>
       `;
