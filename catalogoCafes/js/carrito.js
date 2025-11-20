@@ -1,10 +1,23 @@
-// Clase Carrito para gestionar productos en el carrito
+// Clase Carrito para gestionar productos en el carrito (por usuario)
 class Carrito {
   constructor() {
-    this.productos = JSON.parse(localStorage.getItem("carrito") || "[]");
+    // clave específica por usuario (establecida en auth.js) o 'carrito' por compatibilidad
+    this.key = localStorage.getItem("carrito_key") || "carrito";
+    this.productos = JSON.parse(localStorage.getItem(this.key) || "[]");
+  }
+
+  _saveKeyIfChanged() {
+    const newKey = localStorage.getItem("carrito_key") || "carrito";
+    if (this.key !== newKey) {
+      // migrar si había items en la key vieja -> nueva (opcional)
+      const oldItems = this.productos;
+      this.key = newKey;
+      localStorage.setItem(this.key, JSON.stringify(oldItems));
+    }
   }
 
   agregarProducto(producto) {
+    this._saveKeyIfChanged();
     const existente = this.productos.find(p => p.id === producto.id);
     if (existente) {
       existente.cantidad += producto.cantidad || 1;
@@ -16,21 +29,15 @@ class Carrito {
 
   aumentarCantidad(id) {
     const prod = this.productos.find(p => p.id === id);
-    if (prod) {
-      prod.cantidad++;
-      this.guardar();
-    }
+    if (prod) { prod.cantidad++; this.guardar(); }
   }
 
   disminuirCantidad(id) {
     const prod = this.productos.find(p => p.id === id);
     if (prod) {
       prod.cantidad--;
-      if (prod.cantidad <= 0) {
-        this.eliminarProducto(id);
-      } else {
-        this.guardar();
-      }
+      if (prod.cantidad <= 0) this.eliminarProducto(id);
+      else this.guardar();
     }
   }
 
@@ -39,16 +46,27 @@ class Carrito {
     this.guardar();
   }
 
-  listarProductos() {
-    return this.productos;
-  }
+  listarProductos() { return this.productos; }
 
   obtenerTotal() {
     return this.productos.reduce((total, p) => total + (p.precio * p.cantidad), 0);
   }
 
   guardar() {
-    localStorage.setItem("carrito", JSON.stringify(this.productos));
+    localStorage.setItem(this.key, JSON.stringify(this.productos));
+    // además sincronizamos con server si hay sesión activa
+    const userRaw = sessionStorage.getItem("user");
+    if (userRaw) {
+      const user = JSON.parse(userRaw);
+      // enviar carrito al servidor
+      fetch("http://localhost:3000/carrito", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ carrito: this.productos })
+      }).catch(err => {
+        console.warn("No se pudo sincronizar carrito con el servidor:", err);
+      });
+    }
   }
 
   vaciarCarrito() {
@@ -57,10 +75,11 @@ class Carrito {
   }
 }
 
-// Instancia global del carrito
+/* Resto del código (instanciación e interacción con UI) permanece igual que antes,
+  solo que ahora el Carrito maneja la key por usuario */
 const carrito = new Carrito();
 
-// Función para mostrar el carrito en una ventana modal
+// Mostrar carrito (igual que antes)
 function mostrarCarrito() {
   const modal = document.getElementById("carrito-modal");
   const lista = document.getElementById("carrito-lista");
@@ -80,7 +99,7 @@ function mostrarCarrito() {
   modal.classList.remove("hidden");
 }
 
-// Eventos para agregar productos desde el catálogo
+// Eventos (igual que antes)
 document.addEventListener("click", function(e) {
   if (e.target.classList.contains("btn-agregar-carrito")) {
     const id = parseInt(e.target.dataset.id);
@@ -116,8 +135,9 @@ document.addEventListener("click", function(e) {
   }
 });
 
-// Al cargar la página, mostrar el carrito si ya hay productos
+// Al cargar la página, sincroniza la key por si hay sesión y mostrar carrito si había productos
 window.addEventListener("DOMContentLoaded", () => {
+  carrito._saveKeyIfChanged();
   if (carrito.listarProductos().length > 0) {
     mostrarCarrito();
   }

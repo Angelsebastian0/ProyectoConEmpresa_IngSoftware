@@ -119,6 +119,22 @@
   <footer>
     <p>© 2025 Crossing Families Coffee | Todos los derechos reservados.</p>
 </footer>
+<script>
+  // Protege la vista del inventario en el front (comprobación en cliente)
+  document.addEventListener("DOMContentLoaded", async () => {
+    try {
+      const res = await fetch("/session");
+      const json = await res.json();
+      if (!json.session || json.session.rol !== "admin") {
+        alert("Acceso restringido. Debes ser administrador para ver esta página.");
+        window.location.href = "/index.html";
+      }
+    } catch (err) {
+      console.error(err);
+      window.location.href = "/index.html";
+    }
+  });
+</script>
 
 </body>
 </html>

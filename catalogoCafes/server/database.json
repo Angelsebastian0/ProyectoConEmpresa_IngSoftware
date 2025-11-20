@@ -2,30 +2,92 @@
   "productos": [
     {
       "id": 1763601004983,
-      "nombre": "Café Molido AAA",
+      "nombre": "Café Fermentado LH",
       "origen": "Nariño, Colombia",
-      "descripcion": "Café molido.",
-      "precio": 33000,
-      "imagen": "https://images.unsplash.com/photo-1509042239860-f550ce710b93",
+      "descripcion": "Café fermentado durante 48 horas.\n\n500g contenido neto",
+      "precio": 60000,
+      "imagen": "https://cdn.shopify.com/s/files/1/0022/7409/9299/files/custom_resized_10822d5f-f0dd-478d-84eb-5bbfa965c928_480x480.jpg?v=1650566558",
       "stock": 10
     },
     {
       "id": 1763601048694,
-      "nombre": "Café Molido AA",
+      "nombre": "Café AAA",
       "origen": "Nariño, Colombia",
-      "descripcion": "s",
-      "precio": 20000,
-      "imagen": "https://images.unsplash.com/photo-1509042239860-f550ce710b93",
-      "stock": 2
+      "descripcion": "Café molido y seleccionado con el grano de mayor tamaño y aroma.\n\n500g contenido neto.",
+      "precio": 45000,
+      "imagen": "https://www.somoselcafe.com.ar/img/novedades/25.jpg",
+      "stock": 15
     },
     {
       "id": 1763601100334,
-      "nombre": "Cafe tostado",
+      "nombre": "Café AAA",
       "origen": "Nariño, Colombia",
-      "descripcion": "",
-      "precio": 10000,
-      "imagen": "https://www.webconsultas.com/sites/default/files/styles/wch_image_schema/public/media/0d/temas/cafe.jpg",
+      "descripcion": "Café molido y seleccionado con el grano de mayor tamaño y aroma.\n\n1000g contenido neto.",
+      "precio": 75000,
+      "imagen": "https://www.somoselcafe.com.ar/img/novedades/25.jpg",
       "stock": 8
+    },
+    {
+      "id": "1763620064812",
+      "nombre": "Café Tostado",
+      "origen": "Nariño, Colombia",
+      "descripcion": "Café tostado suave sin trillar de gran fragancia.\n300g contenido neto.",
+      "precio": 40000,
+      "imagen": "https://lavaive.com/wp-content/uploads/2021/11/Marca-de-cafe.png",
+      "stock": 0
+    }
+  ],
+  "usuarios": [
+    {
+      "id": 1,
+      "nombre": "Admin",
+      "correo": "admin@cafe.com",
+      "clave": "admin123",
+      "rol": "admin",
+      "carrito": []
+    },
+    {
+      "id": 2,
+      "nombre": "Cliente Ejemplo",
+      "correo": "cliente@ejemplo.com",
+      "clave": "cliente123",
+      "rol": "cliente",
+      "carrito": []
+    },
+    {
+      "id": 1763618088352,
+      "nombre": "jeison",
+      "correo": "jmont@gmail.com",
+      "clave": "123",
+      "rol": "cliente",
+      "carrito": [
+        {
+          "id": 1763601004983,
+          "nombre": "Café Molido AAA",
+          "precio": 33000,
+          "cantidad": 2
+        },
+        {
+          "id": 1763601048694,
+          "nombre": "Café Molido AA",
+          "precio": 20000,
+          "cantidad": 3
+        },
+        {
+          "id": 1763601100334,
+          "nombre": "Cafe tostado",
+          "precio": 10000,
+          "cantidad": 3
+        }
+      ]
+    },
+    {
+      "id": 1763620144657,
+      "nombre": "Jeison Steven",
+      "correo": "jmontilla@gmail.com",
+      "clave": "123",
+      "rol": "cliente",
+      "carrito": []
     }
   ]
 }
