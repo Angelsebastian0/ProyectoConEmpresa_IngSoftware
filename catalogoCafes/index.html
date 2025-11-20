@@ -5,9 +5,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Catálogo de Cafés</title>
     <link rel="stylesheet" href="css/estilos.css">
+    <style>
+        /* Estilo del botón Registrarse */
+        .btn-registrarse {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 18px;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+            transition: 0.2s;
+        }
+
+        .btn-registrarse:hover {
+            background-color: #45a049;
+        }
+
+        /* Para que el header tenga posición relativa y el botón se ubique dentro */
+        header {
+            position: relative;
+        }
+    </style>
 </head>
 <body>
+    
     <header>
+        <a href="register.php" class="btn-registrarse">Registrarse</a>
+
         <h1>Catálogo de Cafés</h1>
         <p>Descubre nuestros cafés seleccionados especialmente para ti ☕</p>
     </header>

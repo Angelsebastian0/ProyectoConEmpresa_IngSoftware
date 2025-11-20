@@ -1,0 +1,90 @@
+
+
+
+
+/* Fondo general */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: linear-gradient(135deg, #4c6ef5, #15aabf);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Contenedor principal */
+.container {
+    background: #ffffff;
+    padding: 40px 35px;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    text-align: center;
+    width: 350px;
+}
+
+/* Título */
+.container h1 {
+    margin-bottom: 25px;
+    font-size: 28px;
+    color: #333;
+}
+
+/* Inputs */
+.form input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 15px;
+    transition: 0.3s;
+}
+
+/* Animación inputs */
+.form input:focus {
+    border-color: #4c6ef5;
+    box-shadow: 0 0 6px rgba(76,110,245,0.5);
+    outline: none;
+}
+
+/* Botón */
+.btn {
+    width: 100%;
+    background: #4c6ef5;
+    border: none;
+    padding: 12px;
+    margin-top: 15px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background: #3b5bdb;
+}
+
+/* Texto final */
+p {
+    margin-top: 20px;
+    color: #444;
+}
+
+p a {
+    color: #4c6ef5;
+    text-decoration: none;
+}
+
+p a:hover {
+    text-decoration: underline;
+}
+
+/* Estilo del mensaje de error */
+.error {
+    color: red;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
