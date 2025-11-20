@@ -9,6 +9,7 @@
 
     <link rel="stylesheet" href="css/estilos.css">
     <script defer src="js/catalogo.js"></script>
+    <script defer src="js/carrito.js"></script>
 </head>
 <body>
 
@@ -39,8 +40,23 @@
 
     </main>
 
-    <footer>
-        <p>© 2025 Crossing Families Coffee | Todos los derechos reservados.</p>
-    </footer>
+        <footer>
+                <p>© 2025 Crossing Families Coffee | Todos los derechos reservados.</p>
+        </footer>
+
+        <!-- Ícono del carrito -->
+        <button class="carrito-icono" style="position:fixed;top:20px;right:20px;z-index:1000;">
+            🛒 Ver carrito
+        </button>
+
+        <!-- Modal del carrito -->
+        <div id="carrito-modal" class="hidden" style="position:fixed;top:60px;right:20px;width:350px;background:#fff;border:1px solid #ccc;box-shadow:0 2px 8px #0002;padding:20px;z-index:1001;">
+            <h2>Mi Carrito</h2>
+            <ul id="carrito-lista"></ul>
+            <div id="carrito-total" style="margin-top:10px;font-weight:bold;"></div>
+            <button class="btn-finalizar">Finalizar pedido</button>
+            <button class="btn-maximizar">Maximizar</button>
+            <button class="btn-minimizar">Minimizar</button>
+        </div>
 </body>
 </html>
