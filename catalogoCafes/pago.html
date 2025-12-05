@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Pagar - Crossing Families Coffee</title>
+  <link rel="stylesheet" href="css/estilos.css">
+  <script defer src="js/checkout.js"></script>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-inner">
+      <div class="nav-logo">Crossing Families Coffee</div>
+      <ul class="nav-links">
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="catalogo.html">Catálogo</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="contenido">
+    <section style="max-width:900px;margin:1.5rem auto;">
+      <h1>Checkout</h1>
+
+      <div id="checkout-container" style="display:flex;gap:20px;flex-wrap:wrap;">
+        <div style="flex:1;min-width:280px;">
+          <h2>Resumen del pedido</h2>
+          <ul id="checkout-items"></ul>
+          <div id="checkout-total" style="font-weight:bold;margin-top:12px;"></div>
+          <button id="volver-carrito">Volver al carrito</button>
+        </div>
+
+        <div style="flex:1;min-width:280px;">
+          <h2>Información del cliente</h2>
+          <form id="checkout-form">
+            <label>Nombre completo<br><input type="text" id="nombre" required></label><br>
+            <label>Dirección<br><input type="text" id="direccion" required></label><br>
+            <label>Teléfono<br><input type="tel" id="telefono" required pattern="[0-9]{7,15}"></label><br>
+            <label>Correo electrónico<br><input type="email" id="email" required></label><br>
+
+            <h3>Método de pago</h3>
+            <label><input type="radio" name="metodo" value="nequi" checked> Transferencia Nequi</label>
+            <div id="nequi-info" style="margin-top:8px;border:1px dashed #ddd;padding:8px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;">
+              <div style="flex:0 0 140px;display:flex;flex-direction:column;align-items:center;gap:6px;">
+                <img id="nequi-logo" src="img/nequi-logo.png" alt="Nequi" style="max-width:140px;display:block;" onerror="this.style.display='none'">
+                <small style="font-size:0.85rem;color:#555;">Transferencia Nequi</small>
+              </div>
+
+              <div style="flex:1;min-width:200px;">
+                <p style="margin:0 0 6px">Transfiere al número: <strong>3022437015</strong></p>
+                <p style="margin:0 0 8px">Escanea el código QR con tu app Nequi o usa el número. A continuación aparece el código QR:</p>
+                <img id="nequi-qr" src="img/nequi-qr.jpg" alt="QR Nequi" style="max-width:260px;border:1px solid #eee;padding:6px;background:#fff;" onerror="this.style.display='none'">
+              </div>
+            </div>
+
+            <div style="margin-top:12px;">
+              <button type="submit" id="pagar-btn">Pagar ahora</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div id="confirmacion" class="hidden" style="margin-top:20px;">
+        <h2>¡Pago recibido!</h2>
+        <p id="confirm-text"></p>
+        <a id="volver-inicio" href="index.html">Volver al inicio</a>
+      </div>
+
+      <!-- Modal de confirmación bonito -->
+      <div id="modal-confirm" class="modal hidden" aria-hidden="true">
+        <div class="modal-content small" role="dialog" aria-modal="true">
+          <div class="modal-header">
+            <h3>🎉 ¡Pago recibido!</h3>
+            <button class="close" id="modal-close">×</button>
+          </div>
+          <div class="modal-body">
+            <p id="modal-message" style="font-size:1rem;line-height:1.4">Gracias por tu compra. Hemos recibido tu pago correctamente. Revisa tu correo electrónico; allí encontrarás el comprobante (factura).</p>
+            <p id="modal-email-link" style="margin-top:8px"></p>
+          </div>
+          <div class="modal-footer" style="display:flex;justify-content:flex-end;gap:8px;">
+            <a id="modal-volver" class="small" href="catalogo.html">Volver al catálogo</a>
+            <button id="modal-cerrar-btn" class="small">Cerrar</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 Crossing Families Coffee</p>
+  </footer>
+</body>
+</html>

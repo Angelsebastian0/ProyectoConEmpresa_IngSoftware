@@ -16,7 +16,7 @@
       "descripcion": "Café molido y seleccionado con el grano de mayor tamaño y aroma.\n\n500g contenido neto.",
       "precio": 45000,
       "imagen": "https://www.somoselcafe.com.ar/img/novedades/25.jpg",
-      "stock": 15
+      "stock": 9
     },
     {
       "id": 1763601100334,
@@ -88,6 +88,338 @@
       "clave": "123",
       "rol": "cliente",
       "carrito": []
+    },
+    {
+      "id": 1763635927689,
+      "nombre": "tomas c",
+      "correo": "tomasc@unal.com",
+      "clave": "tomasc",
+      "rol": "cliente",
+      "carrito": []
+    },
+    {
+      "id": 1763636150114,
+      "nombre": "Tomas Cardona",
+      "correo": "tcardona@unal.com",
+      "clave": "Tcardona21",
+      "rol": "cliente",
+      "carrito": []
+    },
+    {
+      "id": 1763648594027,
+      "nombre": "Angel Cuarana",
+      "correo": "ang@gmail.com",
+      "clave": "123",
+      "rol": "cliente",
+      "carrito": []
+    }
+  ],
+  "pedidos": [
+    {
+      "id": "1764902036073",
+      "customer": {
+        "nombre": "tomas",
+        "direccion": "calle 20 sur",
+        "telefono": "3022437015",
+        "email": "tcardonae@unal.edu.co"
+      },
+      "items": [
+        {
+          "id": 1763601048694,
+          "nombre": "Café AAA",
+          "precio": 45000,
+          "cantidad": 1
+        },
+        {
+          "id": 1763601004983,
+          "nombre": "Café Fermentado LH",
+          "precio": 60000,
+          "cantidad": 2
+        },
+        {
+          "id": 1763601100334,
+          "nombre": "Café AAA",
+          "precio": 75000,
+          "cantidad": 1
+        }
+      ],
+      "total": 240000,
+      "paymentMethod": "nequi",
+      "status": "Pagado",
+      "createdAt": "2025-12-05T02:33:56.073Z"
+    },
+    {
+      "id": "1764902479153",
+      "customer": {
+        "nombre": "Tomás Cardona",
+        "direccion": "Calle 47 norte b 03",
+        "telefono": "3022437015",
+        "email": "tomascardes@gmail.com"
+      },
+      "items": [
+        {
+          "id": 1763601004983,
+          "nombre": "Café Fermentado LH",
+          "precio": 60000,
+          "cantidad": 2
+        }
+      ],
+      "total": 120000,
+      "paymentMethod": "nequi",
+      "status": "Pagado",
+      "createdAt": "2025-12-05T02:41:19.153Z"
+    },
+    {
+      "id": "1764903598726",
+      "customer": {
+        "nombre": "tomas",
+        "direccion": "calle 20 sur",
+        "telefono": "3022437015",
+        "email": "tcardonae@unal.edu.co"
+      },
+      "items": [
+        {
+          "id": 1763601048694,
+          "nombre": "Café AAA",
+          "precio": 45000,
+          "cantidad": 1
+        }
+      ],
+      "total": 45000,
+      "paymentMethod": "nequi",
+      "status": "Pagado",
+      "createdAt": "2025-12-05T02:59:58.726Z"
+    },
+    {
+      "id": "1764903650273",
+      "customer": {
+        "nombre": "tomas",
+        "direccion": "calle 20 sur",
+        "telefono": "3022437015",
+        "email": "tomascardes@gmail.com"
+      },
+      "items": [
+        {
+          "id": 1763601048694,
+          "nombre": "Café AAA",
+          "precio": 45000,
+          "cantidad": 1
+        }
+      ],
+      "total": 45000,
+      "paymentMethod": "nequi",
+      "status": "Pagado",
+      "createdAt": "2025-12-05T03:00:50.273Z"
+    },
+    {
+      "id": "1764903653517",
+      "customer": {
+        "nombre": "tomas",
+        "direccion": "calle 20 sur",
+        "telefono": "3022437015",
+        "email": "tomascardes@gmail.com"
+      },
+      "items": [
+        {
+          "id": 1763601048694,
+          "nombre": "Café AAA",
+          "precio": 45000,
+          "cantidad": 1
+        }
+      ],
+      "total": 45000,
+      "paymentMethod": "nequi",
+      "status": "Pagado",
+      "createdAt": "2025-12-05T03:00:53.517Z"
+    },
+    {
+      "id": "1764904287933",
+      "customer": {
+        "nombre": "tomas",
+        "direccion": "calle 20 sur",
+        "telefono": "3022437015",
+        "email": "tomascardes@gmail.com"
+      },
+      "items": [
+        {
+          "id": 1763601048694,
+          "nombre": "Café AAA",
+          "precio": 45000,
+          "cantidad": 1
+        }
+      ],
+      "total": 45000,
+      "paymentMethod": "nequi",
+      "status": "Pagado",
+      "createdAt": "2025-12-05T03:11:27.933Z"
+    },
+    {
+      "id": "1764904974176",
+      "customer": {
+        "nombre": "tomas",
+        "direccion": "calle 20 sur",
+        "telefono": "3022437015",
+        "email": "tomascardes@gmail.com"
+      },
+      "items": [
+        {
+          "id": 1763601100334,
+          "nombre": "Café AAA",
+          "precio": 75000,
+          "cantidad": 2
+        }
+      ],
+      "total": 150000,
+      "paymentMethod": "nequi",
+      "status": "Pagado",
+      "createdAt": "2025-12-05T03:22:54.176Z"
+    },
+    {
+      "id": "1764905432166",
+      "customer": {
+        "nombre": "tomas",
+        "direccion": "calle 20 sur",
+        "telefono": "3022437015",
+        "email": "tomascardes@gmail.com"
+      },
+      "items": [
+        {
+          "id": 1763601048694,
+          "nombre": "Café AAA",
+          "precio": 45000,
+          "cantidad": 1
+        }
+      ],
+      "total": 45000,
+      "paymentMethod": "nequi",
+      "status": "Pagado",
+      "createdAt": "2025-12-05T03:30:32.166Z"
+    },
+    {
+      "id": "1764908110590",
+      "customer": {
+        "nombre": "tomas",
+        "direccion": "Calle 47 norte b 03",
+        "telefono": "3022437015",
+        "email": "tomascardes@gmail.com"
+      },
+      "items": [
+        {
+          "id": 1763601048694,
+          "nombre": "Café AAA",
+          "precio": 45000,
+          "cantidad": 2
+        }
+      ],
+      "total": 90000,
+      "paymentMethod": "nequi",
+      "status": "Pagado",
+      "createdAt": "2025-12-05T04:15:10.590Z"
+    },
+    {
+      "id": "1764908599175",
+      "customer": {
+        "nombre": "tomas",
+        "direccion": "calle 20 sur",
+        "telefono": "3022437015",
+        "email": "tomascardes@gmail.com"
+      },
+      "items": [
+        {
+          "id": 1763601048694,
+          "nombre": "Café AAA",
+          "precio": 45000,
+          "cantidad": 1
+        }
+      ],
+      "total": 45000,
+      "paymentMethod": "nequi",
+      "status": "Pagado",
+      "createdAt": "2025-12-05T04:23:19.175Z"
+    },
+    {
+      "id": "1764909019865",
+      "customer": {
+        "nombre": "tomas",
+        "direccion": "calle 20 sur",
+        "telefono": "3022437015",
+        "email": "tomascardes@gmail.com"
+      },
+      "items": [
+        {
+          "id": 1763601048694,
+          "nombre": "Café AAA",
+          "precio": 45000,
+          "cantidad": 1
+        }
+      ],
+      "total": 45000,
+      "paymentMethod": "nequi",
+      "status": "Pagado",
+      "createdAt": "2025-12-05T04:30:19.865Z"
+    },
+    {
+      "id": "1764909671943",
+      "customer": {
+        "nombre": "tomas",
+        "direccion": "calle 20 sur",
+        "telefono": "3022437015",
+        "email": "tomascardes@gmail.com"
+      },
+      "items": [
+        {
+          "id": 1763601048694,
+          "nombre": "Café AAA",
+          "precio": 45000,
+          "cantidad": 1
+        }
+      ],
+      "total": 45000,
+      "paymentMethod": "nequi",
+      "status": "Pagado",
+      "createdAt": "2025-12-05T04:41:11.943Z"
+    },
+    {
+      "id": "1764909724831",
+      "customer": {
+        "nombre": "tomas",
+        "direccion": "calle 20 sur",
+        "telefono": "3022437015",
+        "email": "tomascardes@gmail.com"
+      },
+      "items": [
+        {
+          "id": 1763601048694,
+          "nombre": "Café AAA",
+          "precio": 45000,
+          "cantidad": 2
+        }
+      ],
+      "total": 90000,
+      "paymentMethod": "nequi",
+      "status": "Pagado",
+      "createdAt": "2025-12-05T04:42:04.831Z"
+    },
+    {
+      "id": "1764909941390",
+      "customer": {
+        "nombre": "tomas",
+        "direccion": "calle 20 sur",
+        "telefono": "3022437015",
+        "email": "tomascardes@gmail.com"
+      },
+      "items": [
+        {
+          "id": 1763601048694,
+          "nombre": "Café AAA",
+          "precio": 45000,
+          "cantidad": 1
+        }
+      ],
+      "total": 45000,
+      "paymentMethod": "nequi",
+      "status": "Pagado",
+      "createdAt": "2025-12-05T04:45:41.390Z"
     }
   ]
 }

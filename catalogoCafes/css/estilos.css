@@ -40,6 +40,9 @@ header {
 
 /* Carrito estilos */
 #carrito-modal.hidden { display: none; }
+#carrito-modal.hidden { display: none; }
+/* Utilidad global para ocultar elementos por clase */
+.hidden { display: none !important; }
 #carrito-modal.maximizado { width: 90vw; height: 90vh; top: 5vh; right: 5vw; }
 .carrito-icono { background: #d0c8ae; border-radius: 50%; padding: 10px; border: none; cursor: pointer; }
 .btn-finalizar, .btn-maximizar, .btn-minimizar, .btn-mas, .btn-menos, .btn-eliminar {

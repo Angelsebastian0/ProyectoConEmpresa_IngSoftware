@@ -123,9 +123,8 @@ document.addEventListener("click", function(e) {
     mostrarCarrito();
   }
   if (e.target.classList.contains("btn-finalizar")) {
-    alert("¡Pedido confirmado! Número de pedido: " + Date.now());
-    carrito.vaciarCarrito();
-    mostrarCarrito();
+    // Redirigir a la página de pago/checkout
+    window.location.href = "pago.html";
   }
   if (e.target.classList.contains("btn-maximizar")) {
     document.getElementById("carrito-modal").classList.toggle("maximizado");

@@ -2,6 +2,8 @@ import express from "express";
 import fs from "fs";
 import cors from "cors";
 import path from "path";
+import PDFDocument from "pdfkit";
+import nodemailer from "nodemailer";
 import { fileURLToPath } from "url";
 
 // __dirname para ES Modules
@@ -213,6 +215,161 @@ app.post("/carrito", (req, res) => {
 // ---------------------- SERVIDOR ----------------------
 const PORT = 3000;
 const HOST = "0.0.0.0";
+
+// ---------------------- PEDIDOS / CHECKOUT ----------------------
+app.post("/pedidos", async (req, res) => {
+  try {
+    const { customer, items, total, paymentMethod } = req.body;
+
+    if (!customer || !items || !Array.isArray(items) || items.length === 0) {
+      return res.status(400).json({ error: "Datos de pedido incompletos" });
+    }
+
+    const db = readDB();
+    const pedido = {
+      id: String(Date.now()),
+      customer,
+      items,
+      total,
+      paymentMethod: paymentMethod || "nequi",
+      status: "Pendiente",
+      createdAt: new Date().toISOString()
+    };
+
+    db.pedidos = db.pedidos || [];
+    db.pedidos.push(pedido);
+    saveDB(db);
+
+    // Pedido creado en estado Pendiente. La confirmación (pago) debe
+    // realizarse con POST /pedidos/:id/confirm para decrementar stock
+    // y enviar la factura.
+    res.json({ ok: true, pedidoId: pedido.id });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Error procesando el pedido" });
+  }
+});
+
+// Endpoint para confirmar el pedido: verifica stock, decrementa,
+// marca como Pagado, genera PDF y envía correo.
+app.post("/pedidos/:id/confirm", async (req, res) => {
+  try {
+    const pedidoId = req.params.id;
+    const db = readDB();
+    db.pedidos = db.pedidos || [];
+    const pIndex = db.pedidos.findIndex(p => String(p.id) === String(pedidoId));
+    if (pIndex === -1) return res.status(404).json({ error: "Pedido no encontrado" });
+
+    const pedido = db.pedidos[pIndex];
+    if (pedido.status !== "Pendiente") return res.status(400).json({ error: "Pedido no está en estado Pendiente" });
+
+    // Verificar stock disponible
+    const insufficient = [];
+    pedido.items.forEach(it => {
+      const prod = db.productos.find(p => String(p.id) === String(it.id));
+      const available = prod ? (prod.stock || 0) : 0;
+      if (!prod || available < it.cantidad) {
+        insufficient.push({ id: it.id, nombre: it.nombre, required: it.cantidad, available });
+      }
+    });
+
+    if (insufficient.length > 0) {
+      return res.status(400).json({ error: "Stock insuficiente", details: insufficient });
+    }
+
+    // Decrementar stock
+    pedido.items.forEach(it => {
+      const prodIndex = db.productos.findIndex(p => String(p.id) === String(it.id));
+      if (prodIndex !== -1) {
+        db.productos[prodIndex].stock = (db.productos[prodIndex].stock || 0) - it.cantidad;
+      }
+    });
+
+    // Marcar como pagado
+    db.pedidos[pIndex].status = "Pagado";
+    db.pedidos[pIndex].paidAt = new Date().toISOString();
+    saveDB(db);
+
+    // Generar PDF en memoria (reutiliza la lógica previa)
+    const doc = new PDFDocument();
+    const chunks = [];
+    doc.on("data", (chunk) => chunks.push(chunk));
+    const pdfPromise = new Promise((resolve) => doc.on("end", () => resolve(Buffer.concat(chunks))));
+
+    const customer = pedido.customer;
+    const items = pedido.items;
+    const total = pedido.total;
+
+    doc.fontSize(18).text("Factura - Crossing Families Coffee", { align: "center" });
+    doc.moveDown();
+    doc.fontSize(12).text(`Pedido: ${pedido.id}`);
+    doc.text(`Fecha: ${pedido.createdAt}`);
+    doc.moveDown();
+    doc.text("Cliente:");
+    doc.text(`${customer.nombre}`);
+    doc.text(`${customer.direccion}`);
+    doc.text(`Tel: ${customer.telefono}`);
+    doc.text(`Email: ${customer.email}`);
+    doc.moveDown();
+    doc.text("Resumen de productos:");
+    items.forEach((it, idx) => {
+      doc.text(`${idx + 1}. ${it.nombre} — ${it.cantidad} x $${it.precio} = $${it.cantidad * it.precio}`);
+    });
+    doc.moveDown();
+    doc.text(`Total: $${total}`, { align: "right" });
+    doc.end();
+
+    const pdfBuffer = await pdfPromise;
+
+    // Envío de correo de prueba con Ethereal (si no hay credenciales)
+    let testAccount = null;
+    try {
+      testAccount = await nodemailer.createTestAccount();
+    } catch (err) {
+      console.warn("No se pudo crear cuenta Ethereal:", err);
+    }
+
+    let transporter;
+    if (process.env.SMTP_HOST && process.env.SMTP_USER) {
+      transporter = nodemailer.createTransport({
+        host: process.env.SMTP_HOST,
+        port: process.env.SMTP_PORT || 587,
+        secure: process.env.SMTP_SECURE === "true",
+        auth: { user: process.env.SMTP_USER, pass: process.env.SMTP_PASS }
+      });
+    } else if (testAccount) {
+      transporter = nodemailer.createTransport({
+        host: testAccount.smtp.host,
+        port: testAccount.smtp.port,
+        secure: testAccount.smtp.secure,
+        auth: { user: testAccount.user, pass: testAccount.pass }
+      });
+    }
+
+    let info = null;
+    if (transporter) {
+      info = await transporter.sendMail({
+        from: 'no-reply@crossingcoffee.local',
+        to: customer.email,
+        subject: `Factura Pedido ${pedido.id}`,
+        text: `Adjunto encontrará la factura de su pedido ${pedido.id}`,
+        attachments: [ { filename: `factura-${pedido.id}.pdf`, content: pdfBuffer } ]
+      });
+
+      if (nodemailer.getTestMessageUrl && info) {
+        const previewUrl = nodemailer.getTestMessageUrl(info);
+        console.log("Vista previa del correo (Ethereal):", previewUrl);
+      }
+    } else {
+      console.warn("No se configuró transporter de correo. Pedido marcado como pagado, pero no se envió email.");
+    }
+
+    res.json({ ok: true, pedidoId: pedido.id, emailPreview: info ? nodemailer.getTestMessageUrl(info) : null });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Error confirmando el pedido" });
+  }
+});
 
 app.listen(PORT, HOST, () => {
   console.log(`Servidor corriendo en http://localhost:${PORT}`);
