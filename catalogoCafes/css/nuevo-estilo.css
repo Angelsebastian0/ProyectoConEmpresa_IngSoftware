@@ -1,0 +1,848 @@
+/* ------------------------------------------------------ */
+/* RESET Y BASE */
+/* ------------------------------------------------------ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    background: #f3f1ee;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Variables de color estilo café premium */
+:root {
+    --cafe-oscuro: #52392b;
+    --cafe-medio: #70523d;
+    --cafe-hover: #52392b;
+    --claro: #f3f1f0;
+    --sombra: rgba(0, 0, 0, 0.15);
+    --borde: #ddd;
+}
+
+
+/* ------------------------------------------------------ */
+/* NAVBAR (Adaptado al prototipo premium) */
+/* ------------------------------------------------------ */
+
+.navbar {
+    width: 100%;
+    padding: 15px 40px;
+    background: var(--cafe-oscuro);
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    border-bottom: 0;
+    
+}
+
+.navbar a,
+.navbar .nav-logo,
+.navbar button {
+    color: white !important;
+}
+
+
+.nav-inner {
+    width: 100%;
+    max-width: 1350px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* IZQUIERDA - LINKS */
+.nav-links {
+    display: flex;
+    gap: 25px;
+    list-style: none;
+}
+
+.nav-links a {
+    text-decoration: none;
+    font-weight: 500;
+    color: #333;
+    transition: 0.3s;
+}
+
+.nav-links a:hover,
+.nav-links .active {
+    color: var(--cafe-medio);
+}
+
+/* CENTRO - LOGO */
+.nav-logo {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--cafe-medio);
+}
+
+/* DERECHA - BOTONES AUTH */
+.nav-auth {
+    display: flex;
+    gap: 20px;
+}
+
+.btn-secundario,
+.btn-principal {
+    padding: 8px 18px;
+    border-radius: 8px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+/* Botón “Iniciar sesión” */
+.btn-secundario {
+    border: 1px solid var(--cafe-medio);
+    background: transparent;
+    color: var(--cafe-medio);
+}
+
+.btn-secundario:hover {
+    background: var(--cafe-medio);
+    color: white;
+}
+
+/* Botón “Registrarse” */
+.btn-principal {
+    background: var(--cafe-medio);
+    color: white;
+    border: none;
+}
+
+.btn-principal:hover {
+    background: var(--cafe-hover);
+}
+
+
+/* ------------------------------------------------------ */
+/* HERO */
+/* ------------------------------------------------------ */
+
+.hero {
+    max-width: 1300px;
+    margin: 140px auto 0;
+    padding: 40px;
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: 55px;
+    font-weight: 700;
+    color: var(--cafe-oscuro);
+}
+
+.hero p {
+    margin-top: 15px;
+    font-size: 18px;
+    color: #555;
+}
+
+/* Botones del home */
+.botones-home {
+    margin-top: 35px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.btn-simple {
+    font-weight: 500;
+    color: var(--cafe-medio);
+    text-decoration: none;
+    padding: 10px 16px;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+.btn-simple:hover {
+    background: rgba(122, 79, 51, 0.1);
+}
+
+
+/* ------------------------------------------------------ */
+/* SECTION GENERAL */
+/* ------------------------------------------------------ */
+
+.contenido {
+    margin-top: 40px;
+    text-align: center;
+}
+
+.contenido h2 {
+    font-size: 32px;
+    color: var(--cafe-oscuro);
+    margin-bottom: 10px;
+}
+
+.contenido p {
+    font-size: 17px;
+    color: #444;
+}
+
+
+/* ------------------------------------------------------ */
+/* FOOTER */
+/* ------------------------------------------------------ */
+
+.footer {
+    margin-top: auto;
+    padding: 25px 10px;
+    background: var(--cafe-oscuro);
+    text-align: center;
+    color: #fff;
+    font-size: 14px;
+    --brown-dark: #3a2a1a;
+    --brown-light: #5a3f28;
+    --text-light: #f5f5f5;
+}
+
+
+/* ------------------------------------------------------ */
+/* MODAL (Login / Register) */
+/* ------------------------------------------------------ */
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.55);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 200;
+}
+
+.hidden {
+    display: none;
+}
+
+.auth-box {
+    background: white;
+    width: 380px;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px var(--sombra);
+    animation: fadeIn 0.3s ease;
+}
+
+.auth-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.auth-header h2 {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.close {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* Tabs */
+.auth-tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.auth-tabs button {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    background: #ddd;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: 0.25s;
+}
+
+.auth-tabs .active {
+    background: var(--cafe-medio);
+    color: white;
+}
+
+/* Formulario */
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.auth-form input {
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #bbb;
+    font-size: 15px;
+}
+
+.ancho {
+    width: 100%;
+}
+
+main {
+    flex: 1;
+}
+
+/* ────────────────────────────── */
+/* TARJETAS DE CAFÉ MODERNAS */
+/* ────────────────────────────── */
+.catalogo {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    padding: 2rem;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.tarjeta {
+    background: linear-gradient(145deg, #e9dfd0, #b9ae9f); /* 🌟 Nuevo degradado */
+    border-radius: 15px;
+    box-shadow: 0 8px 20px var(--sombra);
+    border-radius: 15px;
+    box-shadow: 0 8px 20px var(--sombra);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.tarjeta:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 28px var(--sombra);
+}
+
+.tarjeta img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.tarjeta h3 {
+    margin: 1rem;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--cafe-oscuro);
+}
+
+.tarjeta p {
+    margin: 0 1rem 0.5rem;
+    font-size: 0.95rem;
+    color: #555;
+}
+
+.tarjeta .descripcion {
+    font-style: italic;
+    color: #777;
+}
+
+.tarjeta .precio {
+    display: block;
+    margin: 0 1rem 1rem;
+    font-weight: 700;
+    color: var(--cafe-medio);
+}
+
+/* Empuja los botones al fondo */
+.tarjeta .contenido-tarjeta {
+    flex: 1;
+}
+
+.tarjeta .acciones {
+    margin-top: auto;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.tarjeta .acciones .btn-principal,
+.tarjeta .acciones .btn-secundario {
+    flex: 1;
+}
+
+/* Botones coherentes con estilo premium */
+.tarjeta .btn-principal {
+    background: var(--cafe-medio);
+    color: var(--claro);
+    border: none;
+    border-radius: 10px;
+    padding: 10px 15px;
+    font-weight: 600;
+    transition: background 0.3s ease;
+}
+
+.tarjeta .btn-principal:hover {
+    background: var(--cafe-hover);
+}
+
+.tarjeta .btn-secundario {
+    background: transparent;
+    border: 1px solid var(--cafe-medio);
+    color: var(--cafe-medio);
+}
+
+.tarjeta .btn-secundario:hover {
+    background: var(--cafe-medio);
+    color: var(--claro);
+}
+
+/* Carrito lateral derecho */
+.carrito-modal {
+    position: fixed;
+    top: 60px;             /* Debajo del navbar */
+    right: 20px;           /* Pegado al borde derecho */
+    width: 500px;          /* Ancho fijo */
+    max-height: 80vh;      /* Para scroll si hay muchos productos */
+    background: var(--claro);   /* Beige claro premium */
+    border-radius: 15px;
+    box-shadow: 0 10px 25px var(--sombra);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    z-index: 1001;
+}
+
+/* Ocultar cuando tiene la clase hidden */
+.carrito-modal.hidden {
+    display: none;
+}
+
+/* Encabezado del carrito */
+.carrito-modal h2 {
+    margin-top: 0;
+    font-size: 1.4rem;
+    color: var(--cafe-oscuro);
+    margin-bottom: 15px;
+}
+
+/* Lista de productos */
+.carrito-modal ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex: 1; /* Para que ocupe todo el espacio disponible */
+    overflow-y: auto;
+}
+
+/* Botones dentro del carrito */
+.carrito-modal .btn-finalizar,
+.carrito-modal .btn-maximizar,
+.carrito-modal .btn-minimizar {
+    margin-top: 10px;
+    padding: 10px 15px;
+    border-radius: 8px;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+/* Botón principal */
+.carrito-modal .btn-finalizar {
+    background: var(--cafe-medio);
+    color: var(--claro);
+}
+.carrito-modal .btn-finalizar:hover {
+    background: var(--cafe-hover);
+}
+
+/* Botones secundarios */
+.carrito-modal .btn-maximizar,
+.carrito-modal .btn-minimizar {
+    background: transparent;
+    border: 1px solid var(--cafe-medio);
+    color: var(--cafe-medio);
+}
+.carrito-modal .btn-maximizar:hover,
+.carrito-modal .btn-minimizar:hover {
+    background: var(--cafe-medio);
+    color: var(--claro);
+}
+
+.modal-body {
+    display: flex;
+    gap: 16px;
+}
+
+.modal-body form.form-modal {
+    flex: 1;
+}
+
+.modal-body .preview-box {
+    flex: 1;
+}
+
+/* Vista previa: tarjeta igual al catálogo */
+.preview-box .tarjeta {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-between;
+}
+
+.preview-box .tarjeta img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+}
+
+.preview-box .card-body {
+    padding: 12px;
+}
+
+.preview-box .precio {
+    font-weight: bold;
+    color: #2e7d32;
+}
+
+.preview-box .stock {
+    margin-top: 8px;
+    font-weight: 600;
+    color: #333;
+}
+
+
+/* Animación */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.96);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* ===================== */
+/* ⚙️ MODAL INVENTARIO   */
+/* ===================== */
+
+.modal {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  backdrop-filter: blur(3px);
+}
+
+.modal.hidden { display: none; }
+
+.modal-content {
+  background: #ffffff;
+  width: 92%;
+  max-width: 900px;
+  border-radius: 14px;
+  display: grid;
+  grid-template-columns: 1fr auto; /* 🔥 Ajusta automáticamente al tamaño del preview */
+  overflow: hidden;
+  box-shadow: 0 8px 18px rgba(0,0,0,0.25);
+  animation: modalShow 0.18s ease-out;
+}
+
+
+/* Animación entrada */
+@keyframes modalShow {
+  from { transform: scale(0.92); opacity: 0.4; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+/* Header */
+.modal-header {
+  grid-column: 1 / span 2;
+  background: #f7f7f7;
+  border-bottom: 1px solid #ddd;
+  padding: 14px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-header h2 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.close {
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #444;
+}
+
+/* FORM SIDE */
+.form-modal {
+  padding: 20px 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background: #fff;
+}
+
+.form-modal input,
+.form-modal textarea {
+  padding: 10px 12px;
+  font-size: 0.94rem;
+  border: 1px solid #bbb;
+  border-radius: 6px;
+}
+
+/* Botones + / - */
+.cantidad-control {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.cantidad-control .small {
+  padding: 4px 8px;
+  font-size: 1rem;
+}
+
+/* Botones finales */
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+/* ===================== */
+/* 🎨 VISTA PREVIA       */
+/* ===================== */
+
+.preview-box {
+  padding: 18px;
+  background: #fafafa;
+  border-left: 1px solid #ddd;
+}
+
+.preview-box h3 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+/* Tarjeta fija y estética */
+#preview.tarjeta {
+  background: linear-gradient(145deg, #fdf8f1, #f4e7d6);
+  border: 1px solid #d9c8aa;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+/* Ajuste visual de la tarjeta en el modal */
+#preview .card-body {
+  background: transparent;
+}
+
+#preview-nombre {
+  color: #4a3928;
+}
+
+#preview-origen,
+#preview-desc {
+  color: #5d4b38;
+}
+
+#preview-precio {
+  color: #009145; /* Verde premium */
+}
+
+#preview-stock {
+  color: #3d3328;
+}
+
+/* Fondo suave para el modal */
+.modal-content {
+  background: #f3eee7 !important;  /* ☕ Color café cremoso */
+}
+
+
+
+.modal-header {
+  background: #e8dfd3 !important;
+  border-bottom: 1px solid #c6b8a3;
+}
+
+.preview-box {
+  background: #f0e8db !important;
+  border-left: 1px solid #c6b8a3;
+}
+
+
+/* ------------------------------------------------------ */
+/* RESPONSIVE */
+/* ------------------------------------------------------ */
+
+@media(max-width: 900px) {
+    .hero h1 {
+        font-size: 38px;
+    }
+    .catalogo {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        padding: 1rem;
+        gap: 1rem;
+    }
+
+    .tarjeta img {
+        height: 180px;
+}
+}
+
+/* 🎯 VISTA PREVIA EXACTA COMO LAS TARJETAS */
+#preview.tarjeta {
+  background: linear-gradient(145deg, #e9dfd0, #b9ae9f) !important; /* 🔥 Mismo fondo real */
+  border-radius: 15px;
+  box-shadow: 0 8px 20px var(--sombra);
+  width: 250px;                      /* 👈 Mismo ancho mínimo */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Imagen igual que catálogo */
+#preview.tarjeta img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+/* Tipografías y colores consistentes */
+#preview-nombre {
+  margin: 1rem;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--cafe-oscuro);
+}
+
+#preview-origen {
+  margin: 0 1rem;
+  font-size: 0.95rem;
+  color: #555;
+}
+
+#preview-desc {
+  margin: 0 1rem 0.5rem;
+  font-size: 0.95rem;
+  font-style: italic;
+  color: #777;
+}
+
+#preview-precio {
+  margin: 0 1rem 1rem;
+  font-weight: 700;
+  color: var(--cafe-medio);
+}
+
+#preview-stock {
+  margin-bottom: 1rem;
+  margin-left: 1rem;
+  font-size: 0.9rem;
+  color: #333;
+  font-weight: 600;
+}
+
+/* 💅 Ajuste del lado derecho para que no se vea demasiado grande */
+.preview-box {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 18px;
+  background: #fafafa !important;  /* Fondo suave */
+}
+/* 🎯 VISTA PREVIA EXACTA COMO LAS TARJETAS */
+#preview.tarjeta {
+  background: linear-gradient(145deg, #e9dfd0, #b9ae9f) !important; /* 🔥 Mismo fondo real */
+  border-radius: 15px;
+  box-shadow: 0 8px 20px var(--sombra);
+  width: 250px;                      /* 👈 Mismo ancho mínimo */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Imagen igual que catálogo */
+#preview.tarjeta img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+/* Tipografías y colores consistentes */
+#preview-nombre {
+  margin: 1rem;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--cafe-oscuro);
+}
+
+#preview-origen {
+  margin: 0 1rem;
+  font-size: 0.95rem;
+  color: #555;
+}
+
+#preview-desc {
+  margin: 0 1rem 0.5rem;
+  font-size: 0.95rem;
+  font-style: italic;
+  color: #777;
+}
+
+#preview-precio {
+  margin: 0 1rem 1rem;
+  font-weight: 700;
+  color: var(--cafe-medio);
+}
+
+#preview-stock {
+  margin-bottom: 1rem;
+  margin-left: 1rem;
+  font-size: 0.9rem;
+  color: #333;
+  font-weight: 600;
+}
+
+/* 💅 Ajuste del lado derecho para que no se vea demasiado grande */
+.preview-box {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 18px;
+  background: #fafafa !important;  /* Fondo suave */
+}

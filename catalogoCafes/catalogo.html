@@ -1,10 +1,3 @@
-
-
-
-
-
-
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -12,59 +5,138 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Catálogo de Cafés - Crossing Families Coffee</title>
 
+    <!-- TIPOGRAFÍA -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="css/estilos.css">
+    <!-- NUEVO ESTILO -->
+    <link rel="stylesheet" href="css/nuevo-estilo.css">
+
+    <!-- JS -->
     <script defer src="js/catalogo.js"></script>
     <script defer src="js/carrito.js"></script>
 </head>
 <body>
 
+    <!-- ──────────────────────────────── -->
+    <!-- NAVBAR -->
+    <!-- ──────────────────────────────── -->
     <nav class="navbar">
         <div class="nav-inner">
-            <div class="nav-logo">Crossing Families Coffee</div>
 
-            <button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false">
-                <span class="burger"></span>
-            </button>
-
+            <!-- IZQUIERDA: LINKS -->
             <ul class="nav-links">
                 <li><a href="index.html">Inicio</a></li>
                 <li><a href="catalogo.html" class="active">Catálogo</a></li>
                 <li><a href="anuncios.html">Anuncios</a></li>
                 <li><a href="reservas.html">Reservas</a></li>
             </ul>
+
+            <!-- CENTRO: LOGO -->
+            <div class="nav-logo">Crossing Families Coffee</div>
+
+            <!-- DERECHA: AUTH -->
+            <div class="nav-auth">
+                <button id="btn-open-auth" class="btn-secundario">Iniciar sesión</button>
+                <button id="btn-open-auth-2" class="btn-principal">Registrarse</button>
+            </div>
+
+            <!-- HAMBURGUESA MÓVIL -->
+            <button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false">
+                <span class="burger"></span>
+            </button>
         </div>
     </nav>
 
-    <header class="hero hero-small">
+    <!-- ──────────────────────────────── -->
+    <!-- HERO -->
+    <!-- ──────────────────────────────── -->
+    <header class="hero">
         <h1>Catálogo de Cafés</h1>
         <p>Descubre nuestros cafés seleccionados especialmente para ti ☕</p>
     </header>
 
+    <!-- ──────────────────────────────── -->
+    <!-- CONTENIDO -->
+    <!-- ──────────────────────────────── -->
     <main class="contenido">
         <section class="catalogo" id="contenedor-productos">
+            <!-- Productos cargados dinámicamente por catalogo.js -->
         </section>
-
     </main>
 
-        <footer>
-                <p>© 2025 Crossing Families Coffee | Todos los derechos reservados.</p>
-        </footer>
+    <!-- ──────────────────────────────── -->
+    <!-- FOOTER -->
+    <!-- ──────────────────────────────── -->
+    <footer class="footer">
+        <p>© 2025 Crossing Families Coffee | Todos los derechos reservados.</p>
+    </footer>
 
-        <!-- Ícono del carrito -->
-        <button class="carrito-icono" style="position:fixed;top:20px;right:20px;z-index:1000;">
-            🛒 Ver carrito
-        </button>
+    <!-- ──────────────────────────────── -->
+    <!-- CARRITO -->
+    <!-- ──────────────────────────────── -->
+    <button class="btn-principal carrito-icono" style="position:fixed;top:20px;right:20px;z-index:1000;">
+        🛒 Ver carrito
+    </button>
 
-        <!-- Modal del carrito -->
-        <div id="carrito-modal" class="hidden" style="position:fixed;top:60px;right:20px;width:350px;background:#fff;border:1px solid #ccc;box-shadow:0 2px 8px #0002;padding:20px;z-index:1001;">
+    <div id="carrito-modal" class="carrito-modal hidden">
+        <div class="auth-box">
             <h2>Mi Carrito</h2>
             <ul id="carrito-lista"></ul>
             <div id="carrito-total" style="margin-top:10px;font-weight:bold;"></div>
-            <button class="btn-finalizar">Finalizar pedido</button>
-            <button class="btn-maximizar">Maximizar</button>
-            <button class="btn-minimizar">Minimizar</button>
+            <div style="display:flex;gap:10px; margin-top:15px;">
+                <button class="btn-principal btn-finalizar">Finalizar pedido</button>
+                <button class="btn-secundario btn-maximizar">Maximizar</button>
+                <button class="btn-secundario btn-minimizar">Minimizar</button>
+            </div>
         </div>
+    </div>
+
+    <!-- ──────────────────────────────── -->
+    <!-- MODAL DE AUTENTICACIÓN -->
+    <!-- ──────────────────────────────── -->
+    <div id="auth-modal" class="modal hidden">
+        <div class="auth-box">
+            <div class="auth-header">
+                <h2>Cuenta</h2>
+                <button id="auth-close" class="close">×</button>
+            </div>
+
+            <!-- TABS -->
+            <div class="auth-tabs">
+                <button id="tab-login" class="active">Iniciar sesión</button>
+                <button id="tab-register">Registrarse</button>
+            </div>
+
+            <!-- LOGIN -->
+            <form id="panel-login" class="auth-form">
+                <input type="email" id="log-correo" placeholder="Correo">
+                <input type="password" id="log-clave" placeholder="Contraseña">
+                <button type="submit" class="btn-principal ancho">Entrar</button>
+            </form>
+
+            <!-- REGISTER -->
+            <form id="panel-register" class="auth-form hidden">
+                <input type="text" id="reg-nombre" placeholder="Nombre completo">
+                <input type="email" id="reg-correo" placeholder="Correo">
+                <input type="password" id="reg-clave" placeholder="Contraseña">
+                <button type="submit" class="btn-principal ancho">Crear cuenta</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ──────────────────────────────── -->
+    <!-- SCRIPT MODAL AUTH -->
+    <!-- ──────────────────────────────── -->
+    <script>
+        const modal = document.getElementById("auth-modal");
+        const open1 = document.getElementById("btn-open-auth");
+        const open2 = document.getElementById("btn-open-auth-2");
+        const closeBtn = document.getElementById("auth-close");
+
+        open1.onclick = () => modal.classList.remove("hidden");
+        open2.onclick = () => modal.classList.remove("hidden");
+        closeBtn.onclick = () => modal.classList.add("hidden");
+    </script>
+
 </body>
 </html>

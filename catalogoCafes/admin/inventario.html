@@ -1,21 +1,25 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Inventario - Admin</title>
-  <link rel="stylesheet" href="../css/estilos.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inventario - Admin | Crossing Families Coffee</title>
+
+  <!-- TIPOGRAFÍA -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <!-- NUEVO ESTILO PROFESIONAL -->
+  <link rel="stylesheet" href="../css/nuevo-estilo.css">
 </head>
 <body>
+
+  <!-- NAVBAR -->
   <nav class="navbar">
       <div class="nav-inner">
           <div class="nav-logo">Crossing Families Coffee — Admin</div>
-
-          <!-- botón hamburguesa -->
           <button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false">
               <span class="burger"></span>
           </button>
-
           <ul class="nav-links">
               <li><a href="/index.html">Inicio</a></li>
               <li><a href="/catalogo.html">Catálogo</a></li>
@@ -25,22 +29,25 @@
       </div>
   </nav>
 
-
+  <!-- HEADER -->
   <header class="hero hero-small">
     <h1>Inventario de Productos</h1>
     <p>Administra productos: editar, eliminar o crear nuevos.</p>
   </header>
 
+  <!-- CONTENIDO PRINCIPAL -->
   <main style="max-width:1100px;margin:20px auto;padding:0 16px;display:grid;grid-template-columns:1fr 320px;gap:18px;">
+    
+    <!-- LISTA DE PRODUCTOS -->
     <section class="lista-productos" style="padding:16px;">
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
         <h2 style="margin:0;">Productos</h2>
         <button id="btn-agregar" class="btn-principal">Agregar producto</button>
       </div>
-
       <div id="inventario-list" class="catalogo"></div>
     </section>
 
+    <!-- PANEL INFO -->
     <aside class="panel-info">
       <h3>Manual de uso</h3>
       <p>Haz clic en <strong>Editar</strong> para modificar un producto o en <strong>Eliminar</strong> para quitarlo.</p>
@@ -48,93 +55,103 @@
     </aside>
   </main>
 
-  <!-- Modal edición/creación -->
+  <!-- MODAL AGREGAR / EDITAR PRODUCTO -->
   <div id="modal" class="modal hidden" aria-hidden="true">
     <div class="modal-content">
+      <!-- HEADER -->
       <header class="modal-header">
         <h2 id="modal-title">Agregar Producto</h2>
         <button id="modal-close" class="close" title="Cerrar">&times;</button>
       </header>
 
-      <form id="producto-form" class="form-modal">
-        <input type="hidden" id="producto-id">
+      <!-- CUERPO DEL MODAL: FORM + PREVIEW -->
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; align-items:start;">
+        
+        <!-- FORMULARIO -->
+        <form id="producto-form" class="form-modal" style="display:flex; flex-direction:column; gap:10px;">
+          <input type="hidden" id="producto-id">
 
-        <label for="nombre">Nombre</label>
-        <input id="nombre" type="text" required>
+          <label for="nombre">Nombre</label>
+          <input id="nombre" type="text" required>
 
-        <label for="origen">Origen</label>
-        <input id="origen" type="text">
+          <label for="origen">Origen</label>
+          <input id="origen" type="text">
 
-        <label for="descripcion">Descripción</label>
-        <textarea id="descripcion" rows="3"></textarea>
+          <label for="descripcion">Descripción</label>
+          <textarea id="descripcion" rows="3"></textarea>
 
-        <label for="precio">Precio</label>
-        <input id="precio" type="number" min="0" step="1" required>
+          <label for="precio">Precio</label>
+          <input id="precio" type="number" min="0" step="1" required>
 
-        <label for="imagen">Imagen (URL)</label>
-        <input id="imagen" type="text">
+          <label for="imagen">Imagen (URL)</label>
+          <input id="imagen" type="text">
 
-        <label for="cantidad">Stock</label>
-        <div class="cantidad-control">
-          <button type="button" id="menos-cant" class="small">-</button>
-          <input id="cantidad" type="number" min="0" step="1" value="0">
-          <button type="button" id="mas-cant" class="small">+</button>
-        </div>
-
-        <div class="form-actions" style="margin-top:12px;">
-          <button type="submit" class="btn-principal">Guardar</button>
-          <button type="button" id="cancelar-edicion" class="btn-secundario">Cancelar</button>
-        </div>
-      </form>
-
-      <aside class="preview-box">
-        <h3>Vista previa</h3>
-        <div id="preview" class="tarjeta" style="display:flex;flex-direction:column;">
-          <img id="preview-img" src="" alt="Vista previa" style="height:150px;object-fit:cover;">
-          <div class="card-body" style="padding:12px;">
-            <h3 id="preview-nombre">Nombre</h3>
-            <p id="preview-origen" style="margin:0.2rem 0;color:#444;font-size:0.95rem;">Origen</p>
-            <p id="preview-desc" class="descripcion" style="margin-top:0.6rem;">Descripción</p>
-            <span id="preview-precio" class="precio" style="margin-top:8px;">$0</span>
-            <div id="preview-stock" style="margin-top:6px;font-size:0.9rem;color:#333;">Stock: 0</div>
+          <label for="cantidad">Stock</label>
+          <div class="cantidad-control">
+            <button type="button" id="menos-cant" class="small">-</button>
+            <input id="cantidad" type="number" min="0" step="1" value="0">
+            <button type="button" id="mas-cant" class="small">+</button>
           </div>
-        </div>
-      </aside>
+
+          <div class="form-actions">
+            <button type="submit" class="btn-principal">Guardar</button>
+            <button type="button" id="cancelar-edicion" class="btn-secundario">Cancelar</button>
+          </div>
+        </form>
+
+        <!-- VISTA PREVIA -->
+        <aside class="preview-box" style="display:flex; flex-direction:column; gap:12px;">
+          <h3>Vista previa</h3>
+          <div id="preview" class="tarjeta" style="display:flex; flex-direction:column; height:100%;">
+            <img id="preview-img" src="" alt="Vista previa" style="height:150px; object-fit:cover;">
+            <div class="card-body" style="padding:12px; display:flex; flex-direction:column; flex:1;">
+              <h3 id="preview-nombre">Nombre</h3>
+              <p id="preview-origen" style="margin:0.2rem 0;color:#444;font-size:0.95rem;">Origen</p>
+              <p id="preview-desc" class="descripcion" style="margin-top:0.6rem;">Descripción</p>
+              <span id="preview-precio" class="precio" style="margin-top:auto;">$0</span>
+              <div id="preview-stock" class="stock">Stock: 0</div>
+            </div>
+          </div>
+        </aside>
+      </div>
     </div>
   </div>
 
-  <!-- Confirm delete modal -->
+  <!-- CONFIRMAR ELIMINAR -->
   <div id="confirm-modal" class="modal hidden" aria-hidden="true">
     <div class="modal-content small">
       <h3>¿Eliminar este producto?</h3>
       <p id="confirm-text"></p>
       <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:12px;">
         <button id="confirm-cancel" class="btn-secundario">Cancelar</button>
-        <button id="confirm-delete" class="btn-danger">Eliminar</button>
+        <button id="confirm-delete" class="btn-eliminar">Eliminar</button>
       </div>
     </div>
   </div>
 
+  <!-- JS -->
   <script src="inventario.js"></script>
-  <footer>
-    <p>© 2025 Crossing Families Coffee | Todos los derechos reservados.</p>
-</footer>
-<script>
-  // Protege la vista del inventario en el front (comprobación en cliente)
-  document.addEventListener("DOMContentLoaded", async () => {
-    try {
-      const res = await fetch("/session");
-      const json = await res.json();
-      if (!json.session || json.session.rol !== "admin") {
-        alert("Acceso restringido. Debes ser administrador para ver esta página.");
+
+  <script>
+    document.addEventListener("DOMContentLoaded", async () => {
+      try {
+        const res = await fetch("/session");
+        const json = await res.json();
+        if (!json.session || json.session.rol !== "admin") {
+          alert("Acceso restringido. Debes ser administrador para ver esta página.");
+          window.location.href = "/index.html";
+        }
+      } catch (err) {
+        console.error(err);
         window.location.href = "/index.html";
       }
-    } catch (err) {
-      console.error(err);
-      window.location.href = "/index.html";
-    }
-  });
-</script>
+    });
+
+    const modal = document.getElementById("modal");
+    document.getElementById("btn-agregar").onclick = () => modal.classList.remove("hidden");
+    document.getElementById("modal-close").onclick = () => modal.classList.add("hidden");
+    document.getElementById("cancelar-edicion").onclick = () => modal.classList.add("hidden");
+  </script>
 
 </body>
 </html>

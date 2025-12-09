@@ -18,7 +18,7 @@ fetch("http://localhost:3000/productos")
             <span class="precio">$${p.precio}</span>
             ${p.stock === 0 ? "<p style='color:red'>Sin stock</p>" : `
               <button 
-                class='btn-agregar-carrito' 
+                class='btn-principal btn-agregar-carrito'
                 data-id='${p.id}' 
                 data-nombre='${p.nombre}' 
                 data-precio='${p.precio}'>

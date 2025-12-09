@@ -5,21 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crossing Families Coffee</title>
 
+    <!-- TIPOGRAFÍA -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="css/estilos.css">
+    <!-- NUEVO ESTILO PROFESIONAL -->
+    <link rel="stylesheet" href="css/nuevo-estilo.css">
 </head>
+
 <body>
 
+    <!-- ──────────────────────────────── -->
+    <!-- NAVBAR PROFESIONAL -->
+    <!-- ──────────────────────────────── -->
     <nav class="navbar">
         <div class="nav-inner">
-            <div class="nav-logo">Crossing Families Coffee</div>
 
-            <!-- botón hamburguesa -->
-            <button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false">
-                <span class="burger"></span>
-            </button>
-
+            <!-- IZQUIERDA: LINKS -->
             <ul class="nav-links">
                 <li><a href="index.html" class="active">Inicio</a></li>
                 <li><a href="catalogo.html">Catálogo</a></li>
@@ -27,17 +28,33 @@
                 <li><a href="reservas.html">Reservas</a></li>
             </ul>
 
+            <!-- CENTRO: LOGO -->
+            <div class="nav-logo">Crossing Families Coffee</div>
+
+            <!-- DERECHA: AUTENTICACIÓN -->
             <div class="nav-auth">
                 <button id="btn-open-auth" class="btn-secundario">Iniciar sesión</button>
                 <button id="btn-open-auth-2" class="btn-principal">Registrarse</button>
+            </div>
+
+            <!-- HAMBURGUESA (MÓVIL) -->
+            <button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false">
+                <span class="burger"></span>
+            </button>
         </div>
     </nav>
 
+    <!-- ──────────────────────────────── -->
+    <!-- HERO -->
+    <!-- ──────────────────────────────── -->
     <header class="hero">
         <h1>Crossing Families Coffee</h1>
         <p>Llevando el sabor de Nariño a la mesa de todos los Colombianos</p>
     </header>
 
+    <!-- ──────────────────────────────── -->
+    <!-- CONTENIDO -->
+    <!-- ──────────────────────────────── -->
     <main class="contenido">
         <h2>Descubre nuestros productos</h2>
         <p>Explora nuestro catálogo o mantente al día con nuestras últimas novedades.</p>
@@ -45,46 +62,54 @@
         <div class="botones-home">
             <a href="catalogo.html" class="btn-principal">Ver Catálogo</a>
             <a href="anuncios.html" class="btn-secundario">Ver Anuncios</a>
-            <li><a href="reservas.html">Reservas</a></li>
+            <a href="reservas.html" class="btn-simple">Reservas</a>
         </div>
     </main>
 
-    <footer>
+    <!-- ──────────────────────────────── -->
+    <!-- FOOTER -->
+    <!-- ──────────────────────────────── -->
+    <footer class="footer">
         <p>© 2025 Crossing Families Coffee | Todos los derechos reservados.</p>
     </footer>
 
-    <!-- MODAL -->
-    <div id="auth-modal" class="hidden">
+    <!-- ──────────────────────────────── -->
+    <!-- MODAL DE AUTENTICACIÓN -->
+    <!-- ──────────────────────────────── -->
+    <div id="auth-modal" class="modal hidden">
         <div class="auth-box">
             <div class="auth-header">
-            <h2>Cuenta</h2>
-            <button id="auth-close" class="close">×</button>
+                <h2>Cuenta</h2>
+                <button id="auth-close" class="close">×</button>
             </div>
 
+            <!-- TABS -->
             <div class="auth-tabs">
-            <button id="tab-login" class="active">Iniciar sesión</button>
-            <button id="tab-register">Registrarse</button>
+                <button id="tab-login" class="active">Iniciar sesión</button>
+                <button id="tab-register">Registrarse</button>
             </div>
 
+            <!-- LOGIN -->
             <form id="panel-login" class="auth-form">
-            <input type="email" id="log-correo" placeholder="Correo">
-            <input type="password" id="log-clave" placeholder="Contraseña">
-            <button type="submit">Entrar</button>
+                <input type="email" id="log-correo" placeholder="Correo">
+                <input type="password" id="log-clave" placeholder="Contraseña">
+                <button type="submit" class="btn-principal ancho">Entrar</button>
             </form>
 
+            <!-- REGISTER -->
             <form id="panel-register" class="auth-form hidden">
-            <input type="text" id="reg-nombre" placeholder="Nombre completo">
-            <input type="email" id="reg-correo" placeholder="Correo">
-            <input type="password" id="reg-clave" placeholder="Contraseña">
-            <button type="submit">Crear cuenta</button>
+                <input type="text" id="reg-nombre" placeholder="Nombre completo">
+                <input type="email" id="reg-correo" placeholder="Correo">
+                <input type="password" id="reg-clave" placeholder="Contraseña">
+                <button type="submit" class="btn-principal ancho">Crear cuenta</button>
             </form>
         </div>
-        </div>
+    </div>
 
-    <!-- CONEXIÓN A TU JS -->
+    <!-- TU JS -->
     <script src="js/auth.js"></script>
 
-    <!-- PEQUEÑO SCRIPT PARA LOS BOTONES (LO QUE FALTABA) -->
+    <!-- SCRIPT ADICIONAL (modal) -->
     <script>
         const modal = document.getElementById("auth-modal");
         const open1 = document.getElementById("btn-open-auth");
