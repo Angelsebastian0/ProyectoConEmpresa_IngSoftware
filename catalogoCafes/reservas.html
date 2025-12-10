@@ -11,12 +11,12 @@
 
 <body>
 
-    <!-- NAVBAR (igual a las demás páginas) -->
+    <!-- NAVBAR -->
     <nav class="navbar">
         <div class="nav-inner">
             <div class="nav-logo">Crossing Families Coffee</div>
 
-            <button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false">
+            <button class="nav-toggle">
                 <span class="burger"></span>
             </button>
 
@@ -29,7 +29,7 @@
         </div>
     </nav>
 
-    <!-- HERO DE LA PÁGINA -->
+    <!-- HERO -->
     <header class="hero">
         <h1>Reserva tu Visita</h1>
         <p>Agenda tu experiencia en la finca Crossing Families Coffee</p>
@@ -37,77 +37,101 @@
 
     <main class="contenido">
 
-
-        <!-- SECCIÓN 3: Servicios ofrecidos -->
+        <!-- ACTIVIDADES -->
         <section class="reservas-section">
             <h2>Actividades de la Visita</h2>
             <p>Estas son algunas de las experiencias que podrás disfrutar.</p>
 
-            <div class="servicios-grid">
+            <div class="servicios-container">
                 <div class="servicio-card">
-                    <img src="img/recorrido.jpg" alt="Recorrido por la finca">
+                    <img src="img/caminata.jpeg" alt="Recorrido por la finca">
                     <h3>Recorrido guiado</h3>
-                    <p>Explora la finca y aprende sobre todo el proceso del café.</p>
+                    <p>Recorrido guiado por los cafetales.</p>
                 </div>
 
                 <div class="servicio-card">
-                    <img src="img/cata.jpg" alt="Cata de café">
+                    <img src="img/cata.png" alt="Cata de café">
                     <h3>Cata de café</h3>
-                    <p>Disfruta una sesión profesional de degustación.</p>
+                    <p>Disfruta una experiencia de cata profesional.</p>
                 </div>
 
                 <div class="servicio-card">
-                    <img src="img/siembra.jpg" alt="Siembra de café">
+                    <img src="img/siembra.jpeg" alt="Siembra de café">
                     <h3>Siembra de café</h3>
-                    <p>Siembra tu propio árbol y déjalo creciendo en la finca.</p>
+                    <p>Participa sembrando tu propio árbol de café.</p>
                 </div>
             </div>
         </section>
 
-        
-        <!-- SECCIÓN 1: Fechas disponibles -->
-        <div class="fechas-disponibles">
-            <div class="fecha-card disponible" data-fecha="2025-01-15">
-                <h3>15 Ene</h3>
-                <span>Disponible</span>
-            </div>
+        <!-- FORMULARIO DE RESERVA -->
+        <section class="formulario-reserva">
+            <h2>Realizar una Reserva</h2>
+            <p>Selecciona una fecha disponible y llena tus datos.</p>
 
-            <div class="fecha-card disponible" data-fecha="2025-01-16">
-                <h3>16 Ene</h3>
-                <span>Disponible</span>
-            </div>
+            <form id="reservaForm" class="form-card">
 
-            <div class="fecha-card no-disponible" data-fecha="2025-01-17">
-                <h3>17 Ene</h3>
-                <span>No disponible</span>
-            </div>
-        </div>
+                <!-- FECHAS EN EL FORMULARIO -->
+                <div class="form-group">
+                    <label>Selecciona una fecha</label>
 
+                    <div class="fechas-disponibles">
 
-        <!-- SECCIÓN 4: Formulario -->
-        <section class="reservas-section">
-            <h2>Haz tu Reserva</h2>
+                        <div class="fecha-card disponible" data-fecha="2026-01-15">
+                            <h3>15 Ene</h3>
+                            <span>Disponible</span>
+                        </div>
 
-            <form id="form-reserva" class="formulario-reserva">
-                <input type="hidden" id="fechaSeleccionada" name="fechaSeleccionada">
-                <input type="text" id="nombre" placeholder="Nombre completo">
-                <input type="email" id="correo" placeholder="Correo electrónico">
-                <input type="date" id="fecha" placeholder="Fecha de visita">
+                        <div class="fecha-card disponible" data-fecha="2026-01-16">
+                            <h3>16 Ene</h3>
+                            <span>Disponible</span>
+                        </div>
 
-                <textarea id="mensaje" placeholder="Mensaje adicional (opcional)"></textarea>
+                        <div class="fecha-card no-disponible" data-fecha="2026-01-17">
+                            <h3>17 Ene</h3>
+                            <span>No disponible</span>
+                        </div>
 
-                <button type="submit" class="btn-principal">Reservar</button>
+                    </div>
+                </div>
 
-                <p id="error-msg" class="error hidden">Por favor completa todos los campos obligatorios.</p>
+                <input type="hidden" id="fechaSeleccionada">
+
+                <div class="form-group">
+                    <label>Nombre completo</label>
+                    <input type="text" id="nombre" placeholder="Tu nombre">
+                </div>
+
+                <div class="form-group">
+                    <label>Correo electrónico</label>
+                    <input type="email" id="correo" placeholder="ejemplo@correo.com">
+                </div>
+
+                <div class="form-group">
+                    <label>Número de teléfono</label>
+                    <input type="text" id="telefono" placeholder="+57 300 000 0000">
+                </div>
+
+                <div class="form-group">
+                    <label>Número de personas</label>
+                    <input type="number" id="personas" min="1" value="1">
+                </div>
+
+                <button type="submit" class="btn-principal reservar-btn">
+                    Confirmar Reserva
+                </button>
             </form>
+
+            <p id="mensaje-exito" class="exito hidden">✔ Reserva realizada con éxito</p>
+            <p id="mensaje-error" class="error hidden">✖ Por favor completa todos los campos correctamente</p>
         </section>
 
-                <!-- SECCIÓN 2: Botón WhatsApp -->
+        <!-- WHATSAPP -->
         <section class="reservas-section">
             <h2>¿Tienes dudas?</h2>
             <p>Comunícate con nosotros directamente por WhatsApp.</p>
 
-            <a href="https://wa.me/573000000000" class="btn-principal" target="_blank">
+            <a href="https://wa.me/573168124306?text=Hola,%20quisiera%20más%20información%20sobre%20las%20reservas"
+               class="btn-principal" target="_blank">
                 Contactar por WhatsApp
             </a>
         </section>
@@ -118,29 +142,7 @@
         <p>© 2025 Crossing Families Coffee | Todos los derechos reservados.</p>
     </footer>
 
-    <script>
-    // Obtener todas las tarjetas de fecha
-    const tarjetasFecha = document.querySelectorAll(".card-fecha");
-
-    // Campo oculto donde se guardará la fecha seleccionada
-    const inputFecha = document.getElementById("fechaSeleccionada");
-
-    // Asignar eventos a cada tarjeta
-    tarjetasFecha.forEach(card => {
-        card.addEventListener("click", () => {
-
-            // Quitar la selección previa
-            tarjetasFecha.forEach(c => c.classList.remove("seleccionada"));
-
-            // Marcar la tarjeta seleccionada
-            card.classList.add("seleccionada");
-
-            // Guardar el valor de la fecha
-            inputFecha.value = card.dataset.fecha; 
-        });
-    });
-</script>
-
+    <script src="js/reservas.js"></script>
 
 </body>
 </html>

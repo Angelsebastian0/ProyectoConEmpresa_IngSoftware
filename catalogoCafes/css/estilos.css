@@ -492,4 +492,141 @@ footer {
     transition: 0.2s;
 }
 
+.form-reserva {
+    max-width: 600px;
+    margin: 60px auto;
+    background: #fff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
 
+.form-reserva h2 {
+    text-align: center;
+    color: #4a2c2a;
+    margin-bottom: 20px;
+}
+
+#formReserva label {
+    font-weight: 600;
+    color: #4a2c2a;
+}
+
+#formReserva input,
+#formReserva select {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0 18px;
+    border-radius: 8px;
+    border: 1px solid #c7b8a3;
+    font-size: 15px;
+}
+
+.btn-principal {
+    width: 250px;
+    padding: 12px;
+    font-size: 17px;
+}
+
+.error-text {
+    color: #d9534f;
+    margin-top: 10px;
+    display: none;
+    font-weight: 600;
+}
+
+.success-text {
+    color: #28a745;
+    margin-top: 10px;
+    display: none;
+    font-weight: 600;
+}
+
+.servicio-card {
+    background: #ffffff;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0px 2px 6px rgba(0,0,0,0.15);
+    text-align: center;
+    width: 300px;
+    transition: transform 0.3s ease;   /* Animación */
+}
+
+.servicio-card:hover {
+    transform: translateY(-5px);       /* Se eleva suave */
+}
+
+.servicio-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.servicios-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;   /* Centra las tarjetas */
+    gap: 25px;
+    margin-top: 25px;
+}
+
+/* FORMULARIO DE RESERVA */
+.formulario-reserva {
+    width: 90%;
+    max-width: 600px;
+    margin: 50px auto;
+    text-align: center;
+}
+
+.form-card {
+    background: #ffffff;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0px 3px 10px rgba(0,0,0,0.15);
+    margin-top: 20px;
+}
+
+.form-group {
+    text-align: left;
+    margin-bottom: 18px;
+}
+
+.form-group label {
+    font-weight: 600;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-card input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font-size: 16px;
+}
+
+.reservar-btn {
+    margin-top: 10px;
+    padding: 12px 20px;
+    width: 100%;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+/* Mensajes */
+.exito {
+    color: #2ecc71;
+    margin-top: 15px;
+    font-weight: 600;
+}
+
+.error {
+    color: #e74c3c;
+    margin-top: 15px;
+    font-weight: 600;
+}
+
+.hidden {
+    display: none;
+}
