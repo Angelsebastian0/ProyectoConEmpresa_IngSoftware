@@ -131,6 +131,14 @@
       "clave": "123",
       "rol": "cliente",
       "carrito": []
+    },
+    {
+      "id": 1765401580021,
+      "nombre": "angel sebastian cuaran",
+      "correo": "sebastian@gmail.com",
+      "clave": "1234",
+      "rol": "cliente",
+      "carrito": []
     }
   ],
   "pedidos": [

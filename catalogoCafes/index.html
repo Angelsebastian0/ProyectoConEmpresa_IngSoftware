@@ -77,32 +77,44 @@
     <!-- MODAL DE AUTENTICACIÓN -->
     <!-- ──────────────────────────────── -->
     <div id="auth-modal" class="modal hidden">
-        <div class="auth-box">
-            <div class="auth-header">
-                <h2>Cuenta</h2>
-                <button id="auth-close" class="close">×</button>
-            </div>
+        <div class="auth-container">
 
-            <!-- TABS -->
+        <!-- TABS -->
             <div class="auth-tabs">
-                <button id="tab-login" class="active">Iniciar sesión</button>
-                <button id="tab-register">Registrarse</button>
+                <button id="tab-login" class="auth-tab active">Iniciar Sesión</button>
+                <button id="tab-register" class="auth-tab">Registrarse</button>
             </div>
 
-            <!-- LOGIN -->
-            <form id="panel-login" class="auth-form">
-                <input type="email" id="log-correo" placeholder="Correo">
-                <input type="password" id="log-clave" placeholder="Contraseña">
-                <button type="submit" class="btn-principal ancho">Entrar</button>
+        <!-- FORM LOGIN -->
+            <form id="panel-login" class="auth-panel">
+                <h2 class="auth-title">Iniciar Sesión</h2>
+
+                <label>Correo</label>
+                <input type="email" id="log-correo" required>
+
+                <label>Contraseña</label>
+                <input type="password" id="log-clave" required>
+
+                <button class="auth-btn" type="submit">Entrar</button>
             </form>
 
-            <!-- REGISTER -->
-            <form id="panel-register" class="auth-form hidden">
-                <input type="text" id="reg-nombre" placeholder="Nombre completo">
-                <input type="email" id="reg-correo" placeholder="Correo">
-                <input type="password" id="reg-clave" placeholder="Contraseña">
-                <button type="submit" class="btn-principal ancho">Crear cuenta</button>
+        <!-- FORM REGISTER -->
+            <form id="panel-register" class="auth-panel hidden">
+                <h2 class="auth-title">Registrarse</h2>
+
+                <label>Nombre completo</label>
+                <input type="text" id="reg-nombre" required>
+
+                <label>Correo</label>
+                <input type="email" id="reg-correo" required>
+
+                <label>Contraseña</label>
+                <input type="password" id="reg-clave" required>
+
+                <button class="auth-btn" type="submit">Crear cuenta</button>
             </form>
+
+            <button id="auth-close" class="close-btn">X</button>
         </div>
     </div>
 
