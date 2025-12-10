@@ -215,6 +215,9 @@ body {
 /* ------------------------------------------------------ */
 /* MODAL (Login / Register) */
 /* ------------------------------------------------------ */
+/* ----------------------------- */
+/*          MODAL BASE           */
+/* ----------------------------- */
 
 .modal {
     position: fixed;
@@ -230,81 +233,140 @@ body {
 }
 
 .hidden {
-    display: none;
+    display: none !important;
 }
 
-.auth-box {
-    background: white;
-    width: 380px;
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0 10px 25px var(--sombra);
-    animation: fadeIn 0.3s ease;
+/* ----------------------------- */
+/*      CONTENEDOR PRINCIPAL     */
+/* ----------------------------- */
+
+.auth-container {
+    position: relative;
+    background: #fff;
+    width: 420px;
+    padding: 35px 30px;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+    animation: fadeIn 0.25s ease-in-out;
 }
 
-.auth-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 15px;
+/* Animación suave */
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.92); }
+    to { opacity: 1; transform: scale(1); }
 }
 
-.auth-header h2 {
-    font-size: 20px;
-    font-weight: 600;
-}
+/* ----------------------------- */
+/*             TABS             */
+/* ----------------------------- */
 
-.close {
-    background: none;
-    border: none;
-    font-size: 24px;
-    cursor: pointer;
-}
-
-/* Tabs */
 .auth-tabs {
     display: flex;
     gap: 10px;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 
-.auth-tabs button {
+.auth-tab {
     flex: 1;
-    padding: 10px;
+    padding: 10px 0;
     border: none;
     background: #ddd;
-    border-radius: 8px;
+    border-radius: 10px;
     cursor: pointer;
-    font-weight: 500;
+    font-weight: 600;
+    font-size: 15px;
     transition: 0.25s;
 }
 
-.auth-tabs .active {
-    background: var(--cafe-medio);
+.auth-tab.active {
+    background: #6B3E26;      /* café medio */
     color: white;
+    transform: scale(1.03);
 }
 
-/* Formulario */
-.auth-form {
+/* ----------------------------- */
+/*            PANEL              */
+/* ----------------------------- */
+
+.auth-panel {
     display: flex;
     flex-direction: column;
     gap: 12px;
 }
 
-.auth-form input {
+.auth-title {
+    font-size: 22px;
+    text-align: center;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+/* ----------------------------- */
+/*            CAMPOS             */
+/* ----------------------------- */
+
+.auth-panel label {
+    font-size: 14px;
+    font-weight: 600;
+    margin-left: 2px;
+}
+
+.auth-panel input {
     padding: 12px;
-    border-radius: 8px;
+    border-radius: 10px;
     border: 1px solid #bbb;
     font-size: 15px;
+    transition: border 0.2s;
 }
 
-.ancho {
-    width: 100%;
+.auth-panel input:focus {
+    border-color: #6B3E26;
+    outline: none;
 }
 
-main {
-    flex: 1;
+/* ----------------------------- */
+/*            BOTONES            */
+/* ----------------------------- */
+
+.auth-btn {
+    margin-top: 10px;
+    padding: 12px;
+    background: #6B3E26;
+    border: none;
+    color: white;
+    font-size: 16px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.25s;
 }
+
+.auth-btn:hover {
+    background: #8a5234;
+    transform: translateY(-2px);
+}
+
+/* ----------------------------- */
+/*        BOTÓN DE CIERRE        */
+/* ----------------------------- */
+
+.close-btn {
+    position: absolute;
+    top: 8px;
+    right: 12px;
+    background: transparent;
+    border: none;
+    font-size: 22px;
+    cursor: pointer;
+    font-weight: bold;
+    color: #444;
+}
+
+.close-btn:hover {
+    color: #000;
+    transform: scale(1.2);
+}
+
 
 /* ────────────────────────────── */
 /* TARJETAS DE CAFÉ MODERNAS */
