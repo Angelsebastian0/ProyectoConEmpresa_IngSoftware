@@ -19,6 +19,8 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, "..")));
 
 const DB_PATH = path.join(__dirname, "database.json");
+const PUB_PATH = path.join(__dirname, "publicaciones.json");
+
 
 // ---------------------- UTILIDADES ----------------------
 
@@ -30,6 +32,20 @@ function readDB() {
     return { usuarios: [], productos: [] };
   }
 }
+
+function readPublicaciones() {
+  try {
+    const data = fs.readFileSync(PUB_PATH, "utf-8");
+    return JSON.parse(data);
+  } catch (err) {
+    return { publicaciones: [] };
+  }
+}
+
+function savePublicaciones(data) {
+  fs.writeFileSync(PUB_PATH, JSON.stringify(data, null, 2));
+}
+
 
 function saveDB(data) {
   fs.writeFileSync(DB_PATH, JSON.stringify(data, null, 2));
@@ -99,6 +115,35 @@ app.delete("/productos/:id", (req, res) => {
 
   res.json({ mensaje: "Producto eliminado", producto: eliminado });
 });
+
+//Publicaciones
+
+app.get("/publicaciones", (req, res) => {
+  const pub = readPublicaciones();
+  res.json(pub.publicaciones);
+});
+
+app.post("/publicaciones", (req, res) => {
+  if (!activeSession || activeSession.rol !== "admin") {
+    return res.status(403).json({ error: "No autorizado" });
+  }
+
+  const pub = readPublicaciones();
+  const nueva = {
+    id: Date.now(),
+    titulo: req.body.titulo || "",
+    contenido: req.body.contenido || "",
+    imagen: req.body.imagen || "",
+    fecha: new Date().toISOString()
+  };
+
+  pub.publicaciones.push(nueva);
+  savePublicaciones(pub);
+
+  res.json({ mensaje: "Publicación creada", publicacion: nueva });
+});
+
+
 
 // ---------------------- AUTENTICACIÓN ----------------------
 

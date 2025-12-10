@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anuncios | Crossing Families Coffee</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/nuevo-estilo.css">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="nav-inner">
+            <ul class="nav-links">
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="catalogo.html">Catálogo</a></li>
+                <li><a href="anuncios.html" class="active">Anuncios</a></li>
+                <li><a href="reservas.html">Reservas</a></li>
+            </ul>
+
+            <div class="nav-logo">Crossing Families Coffee</div>
+
+            <div class="nav-auth">
+                <button id="btn-open-auth" class="btn-secundario">Iniciar sesión</button>
+                <button id="btn-open-auth-2" class="btn-principal">Registrarse</button>
+            </div>
+
+            <button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false">
+                <span class="burger"></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <header class="hero hero-pequeno">
+        <h1>Anuncios y Publicaciones</h1>
+        <p>Noticias, eventos y actualizaciones de nuestra empresa cafetera.</p>
+    </header>
+
+    <!-- CONTENIDO -->
+    <main class="contenido">
+        <h2>Últimas publicaciones</h2>
+
+        <div id="lista-publicaciones" class="pub-grid">
+            <!-- Aquí se insertarán dinámicamente -->
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <p>© 2025 Crossing Families Coffee | Todos los derechos reservados.</p>
+    </footer>
+
+    <!-- AUTH -->
+    <script src="js/auth.js"></script>
+
+    <!-- JS de anuncios -->
+    <script src="js/anuncios.js"></script>
+
+</body>
+</html>
