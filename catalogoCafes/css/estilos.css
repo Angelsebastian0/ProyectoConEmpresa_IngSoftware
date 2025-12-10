@@ -630,3 +630,18 @@ footer {
 .hidden {
     display: none;
 }
+/* ----------------- Checkout improvements ----------------- */
+#checkout-container { display:flex; gap:20px; flex-wrap:wrap; align-items:flex-start; }
+#checkout-container > div { background:#fff; padding:16px; border-radius:12px; box-shadow:0 6px 18px rgba(0,0,0,0.06); }
+#checkout-container h2 { color:#4e342e; margin-top:0; }
+#checkout-items { text-align:left; padding-left:18px; }
+#checkout-total { font-size:1.05rem; color:#2e7d32; margin-top:12px; }
+#pagar-btn { background:#4e342e; color:#fff; padding:10px 14px; border-radius:8px; border:none; cursor:pointer; }
+#pagar-btn:hover { background:#3a2722; }
+
+/* Make the modal link stand out and match site palette */
+#modal-confirm .modal-body a { display:inline-block; background:#f8f1e7; padding:8px 12px; border-radius:8px; border:1px solid #e6d9bd; color:#4e342e; font-weight:700; text-decoration:none; }
+
+@media (max-width: 800px) {
+    #checkout-container { flex-direction:column; }
+}

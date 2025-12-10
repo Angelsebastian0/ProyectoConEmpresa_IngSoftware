@@ -60,15 +60,29 @@ document.addEventListener("DOMContentLoaded", () => {
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "Error creando pedido");
 
-      // El servidor respondió correctamente: mostrar modal de confirmación bonito.
+            // Tras crear el pedido en estado Pendiente, confirmamos el pago
+      // inmediatamente para obtener la vista previa del correo (emailPreview)
+      const pedidoId = data.pedidoId;
+      const confirmRes = await fetch(`http://localhost:3000/pedidos/${pedidoId}/confirm`, { method: "POST" });
+      const confirmData = await confirmRes.json();
+      if (!confirmRes.ok) {
+        // Si hay problema (p. ej. stock insuficiente), mostrar detalle
+        if (confirmData && confirmData.details) {
+          const msgs = confirmData.details.map(d => `${d.nombre}: requerido ${d.required}, disponible ${d.available}`);
+          alert('No se pudo confirmar el pedido. Stock insuficiente:\n' + msgs.join('\n'));
+        } else {
+          throw new Error(confirmData.error || 'Error confirmando pedido');
+        }
+        return;
+      }
+
+      // Mostrar modal con preview del correo si existe
       const modal = document.getElementById("modal-confirm");
       const modalMsg = document.getElementById("modal-message");
       const modalEmailLink = document.getElementById("modal-email-link");
-      modalMsg.textContent = `¡Pago recibido! Gracias por tu compra. Número de pedido: ${data.pedidoId}`;
-      if (data.emailPreview) {
-        modalEmailLink.innerHTML = `Previsualiza el correo aquí: <a href="${data.emailPreview}" target="_blank">Ver factura (Ethereal)</a>`;
-      } else {
-        modalEmailLink.innerHTML = `Revisa tu correo electrónico; allí encontrarás el comprobante.`;
+      modalMsg.textContent = `¡Pago confirmado, gracias por su compra!   Número de pedido: ${confirmData.pedidoId}`;
+      if (confirmData.emailPreview) {
+        modalEmailLink.innerHTML = `En breve recibira un correo con su factura.   Previsualiza el correo aquí: <a href="${confirmData.emailPreview}" target="_blank" rel="noreferrer">Ver factura (Ethereal)</a>`;
       }
       modal.classList.remove("hidden");
       modal.setAttribute("aria-hidden", "false");

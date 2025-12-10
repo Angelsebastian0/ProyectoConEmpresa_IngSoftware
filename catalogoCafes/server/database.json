@@ -7,7 +7,7 @@
       "descripcion": "Café fermentado durante 48 horas.\n\n500g contenido neto",
       "precio": 60000,
       "imagen": "https://cdn.shopify.com/s/files/1/0022/7409/9299/files/custom_resized_10822d5f-f0dd-478d-84eb-5bbfa965c928_480x480.jpg?v=1650566558",
-      "stock": 10
+      "stock": 9
     },
     {
       "id": 1763601048694,
@@ -25,7 +25,7 @@
       "descripcion": "Café molido y seleccionado con el grano de mayor tamaño y aroma.\n\n1000g contenido neto.",
       "precio": 75000,
       "imagen": "https://www.somoselcafe.com.ar/img/novedades/25.jpg",
-      "stock": 8
+      "stock": 6
     },
     {
       "id": "1763620064812",
@@ -439,6 +439,99 @@
       "paymentMethod": "nequi",
       "status": "Pagado",
       "createdAt": "2025-12-05T04:45:41.390Z"
+    },
+    {
+      "id": "1765388545994",
+      "customer": {
+        "nombre": "tomas",
+        "direccion": "calle 20 sur",
+        "telefono": "3022437015",
+        "email": "tomascardes@gmail.com"
+      },
+      "items": [
+        {
+          "id": 1763601100334,
+          "nombre": "Café AAA",
+          "precio": 75000,
+          "cantidad": 1
+        },
+        {
+          "id": 1763601004983,
+          "nombre": "Café Fermentado LH",
+          "precio": 60000,
+          "cantidad": 1
+        }
+      ],
+      "total": 135000,
+      "paymentMethod": "nequi",
+      "status": "Pendiente",
+      "createdAt": "2025-12-10T17:42:25.994Z"
+    },
+    {
+      "id": "1765388970229",
+      "customer": {
+        "nombre": "tomas",
+        "direccion": "calle 20 sur",
+        "telefono": "3022437015",
+        "email": "tomascardes@gmail.com"
+      },
+      "items": [
+        {
+          "id": 1763601004983,
+          "nombre": "Café Fermentado LH",
+          "precio": 60000,
+          "cantidad": 1
+        }
+      ],
+      "total": 60000,
+      "paymentMethod": "nequi",
+      "status": "Pagado",
+      "createdAt": "2025-12-10T17:49:30.229Z",
+      "paidAt": "2025-12-10T17:49:30.233Z"
+    },
+    {
+      "id": "1765389335366",
+      "customer": {
+        "nombre": "tomas",
+        "direccion": "calle 20 sur",
+        "telefono": "3022437015",
+        "email": "tomascardes@gmail.com"
+      },
+      "items": [
+        {
+          "id": 1763601100334,
+          "nombre": "Café AAA",
+          "precio": 75000,
+          "cantidad": 1
+        }
+      ],
+      "total": 75000,
+      "paymentMethod": "nequi",
+      "status": "Pagado",
+      "createdAt": "2025-12-10T17:55:35.366Z",
+      "paidAt": "2025-12-10T17:55:35.370Z"
+    },
+    {
+      "id": "1765389535839",
+      "customer": {
+        "nombre": "tomas",
+        "direccion": "calle 20 sur",
+        "telefono": "3022437015",
+        "email": "tomascardes@gmail.com"
+      },
+      "items": [
+        {
+          "id": 1763601100334,
+          "nombre": "Café AAA",
+          "precio": 75000,
+          "cantidad": 1
+        }
+      ],
+      "total": 75000,
+      "paymentMethod": "nequi",
+      "status": "Pagado",
+      "createdAt": "2025-12-10T17:58:55.839Z",
+      "paidAt": "2025-12-10T17:58:55.844Z"
     }
   ]
 }
