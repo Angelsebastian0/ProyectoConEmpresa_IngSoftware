@@ -43,6 +43,51 @@
     <!-- CONTENIDO -->
     <main class="contenido">
         <h2>Últimas publicaciones</h2>
+        <div id="admin-controls" class="hidden">
+            <button id="btn-crear" class="btn-principal">Crear publicación</button>
+
+            <select id="filtro-publicaciones" class="pub-filtro">
+                <option value="todas">Todas</option>
+                <option value="noticia">Noticias</option>
+                <option value="promocion">Promociones</option>
+            </select>
+        </div>
+
+        <div id="crear-publicacion-box" class="pub-card hidden" style="padding: 20px;">
+
+            <h3 style="margin-bottom: 15px;">Nueva publicación</h3>
+
+            <label>Imagen (URL)</label>
+            <input id="new-img" type="text">
+            <img id="preview" class="preview-img">
+
+            <label>Título</label>
+            <input id="new-title" type="text">
+
+            <label>Contenido</label>
+            <textarea id="new-content"></textarea>
+
+            <label>Tipo</label>
+            <select id="new-tipo">
+                <option value="noticia">Noticia</option>
+            </select>
+
+            <div id="promo-extra" class="hidden">
+                <label>Precio anterior</label>
+                <input id="precio-antes" type="number">
+
+                <label>Precio nuevo</label>
+                <input id="precio-nuevo" type="number">
+
+                <label>Fin de promoción</label>
+                <input id="fin-promocion" type="date">
+            </div>
+
+            <div style="margin-top: 15px; display:flex; gap:10px;">
+                <button id="btn-publicar" class="btn-principal">Publicar</button>
+                <button id="btn-cancelar" class="btn-secundario">Cancelar</button>
+            </div>
+        </div>
 
         <div id="lista-publicaciones" class="pub-grid">
             <!-- Aquí se insertarán dinámicamente -->

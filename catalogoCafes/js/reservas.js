@@ -1,100 +1,95 @@
 // ================================
-//   CONFIGURACIÓN DE DISPONIBILIDAD
-// ================================
-const fechasNoDisponibles = [
-    "2026-01-17",
-    "2026-01-22",
-    "2026-01-30"
-];
-
-
-// ================================
 //   SELECCIÓN DE FECHAS
 // ================================
-const tarjetasFecha = document.querySelectorAll(".fecha-card");
-const inputFecha = document.getElementById("fechaSeleccionada");
+const fechaCards = document.querySelectorAll(".fecha-card");
+const fechaSeleccionadaInput = document.getElementById("fechaSeleccionada");
 
-// Inicializar disponibilidad
-tarjetasFecha.forEach(card => {
-    const fecha = card.dataset.fecha;
+fechaCards.forEach(card => {
+    if (card.classList.contains("no-disponible")) return;
 
-    if (fechasNoDisponibles.includes(fecha)) {
-        card.classList.add("no-disponible");
-        card.querySelector("span").textContent = "No disponible";
-    } else {
-        card.classList.add("disponible");
-        card.querySelector("span").textContent = "Disponible";
-    }
-});
-
-// Selección
-tarjetasFecha.forEach(card => {
     card.addEventListener("click", () => {
-
-        if (card.classList.contains("no-disponible")) return;
-
-        tarjetasFecha.forEach(c => c.classList.remove("seleccionada"));
+        fechaCards.forEach(c => c.classList.remove("seleccionada"));
         card.classList.add("seleccionada");
 
-        inputFecha.value = card.dataset.fecha;
+        fechaSeleccionadaInput.value = card.dataset.fecha;
     });
 });
 
-
 // ================================
-//   VALIDACIÓN Y ENVÍO
+//   FORMULARIO Y CONFIRMACIÓN
 // ================================
-const form = document.getElementById("reservaForm");
-const msgExito = document.getElementById("mensaje-exito");
-const msgError = document.getElementById("mensaje-error");
+const formulario = document.getElementById("reservaForm");
 
-form.addEventListener("submit", (e) => {
+const mensajeExito = document.getElementById("mensaje-exito");
+const mensajeError = document.getElementById("mensaje-error");
+
+const resumenCard = document.getElementById("resumenReserva");
+const resumenContenido = document.getElementById("resumenContenido");
+
+formulario.addEventListener("submit", (e) => {
     e.preventDefault();
 
-    msgError.classList.add("hidden");
-    msgExito.classList.add("hidden");
-
+    const fecha = fechaSeleccionadaInput.value;
     const nombre = document.getElementById("nombre").value.trim();
     const correo = document.getElementById("correo").value.trim();
     const telefono = document.getElementById("telefono").value.trim();
     const personas = document.getElementById("personas").value.trim();
-    const fecha = inputFecha.value;
 
-    if (!nombre || !correo || !telefono || !personas || !fecha) {
-        mostrarError("Debes completar todos los campos y seleccionar una fecha.");
+    // Validación
+    if (!fecha || !nombre || !correo || !telefono || !personas) {
+        mostrarMensaje(false);
         return;
     }
 
-    if (fechasNoDisponibles.includes(fecha)) {
-        mostrarError("La fecha seleccionada no está disponible.");
-        return;
-    }
+    // Crear resumen
+    resumenContenido.innerHTML = `
+        <strong>Nombre:</strong> ${nombre}<br>
+        <strong>Correo:</strong> ${correo}<br>
+        <strong>Teléfono:</strong> ${telefono}<br>
+        <strong>Personas:</strong> ${personas}<br>
+        <strong>Fecha:</strong> ${fecha}
+    `;
 
-    mostrarExito("✔ Reserva realizada con éxito");
+    mostrarResumenReserva();
+    mostrarMensaje(true);
 
-    form.reset();
-    inputFecha.value = "";
-    tarjetasFecha.forEach(c => c.classList.remove("seleccionada"));
+    formulario.reset();
+    fechaSeleccionadaInput.value = "";
+    fechaCards.forEach(c => c.classList.remove("seleccionada"));
 });
 
-
 // ================================
-//   FUNCIONES DE MENSAJE
+//   TARJETA PROFESIONAL
 // ================================
-function mostrarError(texto) {
-    msgError.textContent = texto;
-    msgError.classList.remove("hidden");
+function mostrarResumenReserva() {
+    resumenCard.style.display = "block";
+    resumenCard.style.opacity = "1";
+    resumenCard.style.transform = "translateY(0)";
 
+    // Ocultar después de 10 segundos
     setTimeout(() => {
-        msgError.classList.add("hidden");
-    }, 4000);
+        resumenCard.style.transition = "opacity 0.6s ease, transform 0.6s ease";
+        resumenCard.style.opacity = "0";
+        resumenCard.style.transform = "translateY(15px)";
+
+        setTimeout(() => {
+            resumenCard.style.display = "none";
+        }, 600);
+
+    }, 10000);
 }
 
-function mostrarExito(texto) {
-    msgExito.textContent = texto;
-    msgExito.classList.remove("hidden");
-
-    setTimeout(() => {
-        msgExito.classList.add("hidden");
-    }, 4000);
+// ================================
+//   MENSAJES
+// ================================
+function mostrarMensaje(exito) {
+    if (exito) {
+        mensajeError.classList.add("hidden");
+        mensajeExito.classList.remove("hidden");
+        setTimeout(() => mensajeExito.classList.add("hidden"), 4000);
+    } else {
+        mensajeExito.classList.add("hidden");
+        mensajeError.classList.remove("hidden");
+        setTimeout(() => mensajeError.classList.add("hidden"), 4000);
+    }
 }

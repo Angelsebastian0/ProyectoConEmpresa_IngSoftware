@@ -4,91 +4,309 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Pagar - Crossing Families Coffee</title>
-  <link rel="stylesheet" href="css/estilos.css">
+
+  <!-- Mismo estilo que el index -->
+  <link rel="stylesheet" href="css/nuevo-estilo.css">
   <script defer src="js/checkout.js"></script>
+
+  <style>
+    /* ------------------------------- */
+    /* ESTILO PARA CHECKOUT           */
+    /* Totalmente consistente con index */
+    /* ------------------------------- */
+
+    /* Contenedor general */
+    .checkout-section {
+      max-width: 1100px;
+      margin: 40px auto;
+      padding: 0 20px;
+      text-align: center;
+    }
+
+    /* Grid del checkout (respetando estructura original) */
+    #checkout-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 25px;
+      margin-top: 40px;
+      justify-content: center;
+    }
+
+    .checkout-box {
+      flex: 1;
+      min-width: 300px;
+      background: #ffffff;
+      border-radius: 14px;
+      padding: 25px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+      text-align: left;
+    }
+
+    .checkout-box h2 {
+      margin-bottom: 15px;
+      color: var(--cafe-oscuro);
+    }
+
+    /* Lista del resumen */
+    #checkout-items {
+      padding-left: 18px;
+      margin-top: 10px;
+      margin-bottom: 15px;
+    }
+
+    #checkout-total {
+      font-weight: bold;
+      margin-top: 12px;
+      color: var(--cafe-medio);
+    }
+
+    /* Botón volver */
+    #volver-carrito {
+      padding: 10px 16px;
+      border-radius: 10px;
+      cursor: pointer;
+      background: transparent;
+      border: 1px solid var(--cafe-medio);
+      color: var(--cafe-medio);
+      font-weight: 600;
+      transition: 0.25s;
+      margin-top: 10px;
+    }
+
+    #volver-carrito:hover {
+      background: var(--cafe-medio);
+      color: white;
+    }
+
+    /* ---------------------- */
+    /* FORMULARIO Checkout    */
+    /* ---------------------- */
+
+    #checkout-form {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    #checkout-form label {
+      font-weight: 600;
+      font-size: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    /* Inputs idénticos al login/register */
+    #checkout-form input[type="text"],
+    #checkout-form input[type="email"],
+    #checkout-form input[type="tel"] {
+      padding: 12px;
+      border-radius: 10px;
+      border: 1px solid #bbb;
+      font-size: 15px;
+      transition: 0.2s;
+    }
+
+    #checkout-form input:focus {
+      border-color: #6B3E26;
+      outline: none;
+    }
+
+    /* Radios */
+    .metodo-radio {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: 600;
+    }
+
+    /* Caja Nequi */
+    #nequi-info {
+      margin-top: 5px;
+      border: 1px dashed #c7b9a6;
+      padding: 12px;
+      border-radius: 10px;
+      display: flex;
+      gap: 15px;
+      align-items: center;
+      flex-wrap: wrap;
+      background: #f8f3eb;
+    }
+
+    #nequi-logo {
+      max-width: 120px;
+      display: block;
+    }
+
+    #nequi-qr {
+      max-width: 190px;
+      border: 1px solid #eee;
+      padding: 6px;
+      background: white;
+      border-radius: 8px;
+    }
+
+    /* Botón confirmar pago */
+    #pagar-btn {
+      padding: 12px;
+      border-radius: 10px;
+      background: var(--cafe-medio);
+      color: white;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      transition: 0.25s;
+    }
+
+    #pagar-btn:hover {
+      background: var(--cafe-hover);
+    }
+
+    /* Confirmación */
+    #confirmacion {
+      background: #ffffff;
+      padding: 25px;
+      border-radius: 14px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+      margin-top: 40px;
+    }
+
+    #volver-inicio {
+      display: inline-block;
+      margin-top: 12px;
+      background: var(--cafe-medio);
+      padding: 10px 16px;
+      border-radius: 10px;
+      color: white;
+      text-decoration: none;
+      transition: 0.25s;
+    }
+
+    #volver-inicio:hover {
+      background: var(--cafe-hover);
+    }
+
+  </style>
+
 </head>
 <body>
+
+  <!-- NAVBAR (idéntico al index) -->
   <nav class="navbar">
     <div class="nav-inner">
-      <div class="nav-logo">Crossing Families Coffee</div>
       <ul class="nav-links">
-        <li><a href="index.html">Inicio</a></li>
+        <li><a href="index.html" class="active">Inicio</a></li>
         <li><a href="catalogo.html">Catálogo</a></li>
       </ul>
+      <div class="nav-logo">Crossing Families Coffee</div>
     </div>
   </nav>
 
-  <main class="contenido">
-    <section style="max-width:900px;margin:1.5rem auto;">
-      <h1>Checkout</h1>
+  <!-- HERO (A, como pediste) -->
+  <header class="hero">
+    <h1>Checkout</h1>
+    <p>Finaliza tu compra con total seguridad</p>
+  </header>
 
-      <div id="checkout-container" style="display:flex;gap:20px;flex-wrap:wrap;">
-        <div style="flex:1;min-width:280px;">
+  <!-- CONTENIDO CHECKOUT -->
+  <main class="contenido">
+
+    <section class="checkout-section">
+
+      <div id="checkout-container">
+
+        <!-- RESUMEN -->
+        <div class="checkout-box">
           <h2>Resumen del pedido</h2>
+
           <ul id="checkout-items"></ul>
-          <div id="checkout-total" style="font-weight:bold;margin-top:12px;"></div>
+
+          <div id="checkout-total"></div>
+
           <button id="volver-carrito">Volver al carrito</button>
         </div>
 
-        <div style="flex:1;min-width:280px;">
+        <!-- FORMULARIO -->
+        <div class="checkout-box">
           <h2>Información del cliente</h2>
+
           <form id="checkout-form">
-            <label>Nombre completo<br><input type="text" id="nombre" required></label><br>
-            <label>Dirección<br><input type="text" id="direccion" required></label><br>
-            <label>Teléfono<br><input type="tel" id="telefono" required pattern="[0-9]{7,15}"></label><br>
-            <label>Correo electrónico<br><input type="email" id="email" required></label><br>
 
-            <h3>Método de pago</h3>
-            <label><input type="radio" name="metodo" value="nequi" checked> Transferencia Nequi</label>
-            <div id="nequi-info" style="margin-top:8px;border:1px dashed #ddd;padding:8px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;">
-              <div style="flex:0 0 140px;display:flex;flex-direction:column;align-items:center;gap:6px;">
-                <img id="nequi-logo" src="img/nequi-logo.png" alt="Nequi" style="max-width:140px;display:block;" onerror="this.style.display='none'">
+            <label>Nombre completo
+              <input type="text" id="nombre" required>
+            </label>
 
+            <label>Dirección
+              <input type="text" id="direccion" required>
+            </label>
+
+            <label>Teléfono
+              <input type="tel" id="telefono" required pattern="[0-9]{7,15}">
+            </label>
+
+            <label>Correo electrónico
+              <input type="email" id="email" required>
+            </label>
+
+            <h3 style="font-size:1.1rem;margin-top:5px;color:var(--cafe-oscuro);">Método de pago</h3>
+
+            <label class="metodo-radio">
+              <input type="radio" name="metodo" value="nequi" checked>
+              Transferencia Nequi
+            </label>
+
+            <div id="nequi-info">
+
+              <div>
+                <img id="nequi-logo" src="img/nequi-logo.png" alt="Nequi" onerror="this.style.display='none'">
               </div>
 
-              <div style="flex:1;min-width:200px;">
-                <p style="margin:0 0 6px">Transfiere por medio de la app Nequi al número: <strong>3022437015</strong></p>
-                
-                <p style="margin:0 0 8px">O escanea el siguiente código QR con tu app Nequi para realizar el pago:</p>
-                <img id="nequi-qr" src="img/nequi-qr.jpg" alt="QR Nequi" style="max-width:260px;border:1px solid #eee;padding:6px;background:#fff;" onerror="this.style.display='none'">
+              <div style="flex:1;">
+                <p>Transfiere a <strong>3022437015</strong></p>
+                <p>O escanea este código:</p>
+                <img id="nequi-qr" src="img/nequi-qr.jpg" alt="QR Nequi" onerror="this.style.display='none'">
               </div>
+
             </div>
 
-            <div style="margin-top:12px;">
-              <button type="submit" id="pagar-btn">Confirmar pago</button>
-            </div>
+            <button type="submit" id="pagar-btn">Confirmar pago</button>
           </form>
         </div>
       </div>
 
-      <div id="confirmacion" class="hidden" style="margin-top:20px;">
+      <!-- CONFIRMACIÓN -->
+      <div id="confirmacion" class="hidden">
         <h2>¡Pago recibido!</h2>
         <p id="confirm-text"></p>
-        <a id="volver-inicio" href="index.html">Volver al inicio</a>
+        <a href="index.html" id="volver-inicio">Volver al inicio</a>
       </div>
 
-      <!-- Modal de confirmación bonito -->
-      <div id="modal-confirm" class="modal hidden" aria-hidden="true">
-        <div class="modal-content small" role="dialog" aria-modal="true">
-          <div class="modal-header">
-            <h3>🎉 ¡Pago recibido!</h3>
-            <button class="close" id="modal-close">×</button>
-          </div>
-          <div class="modal-body">
-            <p id="modal-message" style="font-size:1rem;line-height:1.4">Gracias por tu compra. Hemos recibido tu pago correctamente. Revisa tu correo electrónico; allí encontrarás el comprobante (factura).</p>
-            <p id="modal-email-link" style="margin-top:8px"></p>
-          </div>
-          <div class="modal-footer" style="display:flex;justify-content:flex-end;gap:8px;">
-            <a id="modal-volver" class="small" href="catalogo.html">Volver al catálogo</a>
-            <button id="modal-cerrar-btn" class="small">Cerrar</button>
-          </div>
-        </div>
-      </div>
     </section>
+
   </main>
 
-  <footer>
+  <!-- FOOTER -->
+  <footer class="footer">
     <p>© 2025 Crossing Families Coffee</p>
   </footer>
+
+  <!-- MODAL DE CONFIRMACIÓN -->
+  <div id="modal-confirm" class="modal hidden" aria-hidden="true">
+    <div class="modal-content small">
+      <div class="modal-header">
+        <h3>🎉 ¡Pago recibido!</h3>
+        <button class="close" id="modal-close">×</button>
+      </div>
+      <div class="modal-body">
+        <p id="modal-message">Gracias por tu compra. Revisa tu correo electrónico para ver el comprobante.</p>
+        <p id="modal-email-link"></p>
+      </div>
+      <div class="modal-footer">
+        <a id="modal-volver" class="btn-secundario" href="catalogo.html">Volver al catálogo</a>
+        <button id="modal-cerrar-btn" class="btn-principal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+
 </body>
 </html>
