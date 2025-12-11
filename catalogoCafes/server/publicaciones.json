@@ -1,13 +1,6 @@
 {
   "publicaciones": [
     {
-      "id": 1764903999232,
-      "titulo": "Nueva cosecha disponible",
-      "contenido": "Llegó nuestra nueva cosecha de café fermentado.",
-      "imagen": "https://upload.wikimedia.org/wikipedia/commons/4/45/A_small_cup_of_coffee.JPG",
-      "fecha": "2025-02-01T10:40:20Z"
-    },
-    {
       "id": 1765430639347,
       "titulo": "Nuestro nuevo Café: Molienda de la casa.",
       "contenido": "Café de calidad campesina, el sabor que toman todos los días los campesinos y campesinas.\n\nPronto estará en nuestros catálogos desde $20'000 por 500gr.",

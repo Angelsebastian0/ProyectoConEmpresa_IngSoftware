@@ -1059,6 +1059,15 @@ body {
 
 /*Reservas*/
 
+.reservas-section {
+    display: flex;
+    flex-direction: column; /* Para que los elementos queden uno debajo del otro */
+    align-items: center;    /* Centra horizontalmente */
+    justify-content: center; /* Centra verticalmente si tiene altura */
+    text-align: center;     /* Centra el texto dentro de los elementos */
+    margin: 50px 0;         /* Espaciado superior e inferior */
+}
+
 /* Contenedor de fechas */
 .fechas-disponibles {
     display: flex;
