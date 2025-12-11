@@ -25,7 +25,7 @@
       "descripcion": "Café molido y seleccionado con el grano de mayor tamaño y aroma.\n\n1000g contenido neto.",
       "precio": 75000,
       "imagen": "https://www.somoselcafe.com.ar/img/novedades/25.jpg",
-      "stock": 1
+      "stock": 0
     },
     {
       "id": "1763620064812",
@@ -695,6 +695,28 @@
       "status": "Pagado",
       "createdAt": "2025-12-11T00:04:44.283Z",
       "paidAt": "2025-12-11T00:04:44.287Z"
+    },
+    {
+      "id": "1765417776008",
+      "customer": {
+        "nombre": "asd",
+        "direccion": "asd",
+        "telefono": "3233851022",
+        "email": "byswap123@gmail.com"
+      },
+      "items": [
+        {
+          "id": 1763601100334,
+          "nombre": "Café AAA",
+          "precio": 75000,
+          "cantidad": 1
+        }
+      ],
+      "total": 75000,
+      "paymentMethod": "nequi",
+      "status": "Pagado",
+      "createdAt": "2025-12-11T01:49:36.008Z",
+      "paidAt": "2025-12-11T01:49:36.011Z"
     }
   ]
 }

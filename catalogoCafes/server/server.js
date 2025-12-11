@@ -143,6 +143,33 @@ app.post("/publicaciones", (req, res) => {
   res.json({ mensaje: "Publicación creada", publicacion: nueva });
 });
 
+app.delete("/publicaciones/:id", (req, res) => {
+  if (!activeSession || activeSession.rol !== "admin") {
+    return res.status(403).json({ error: "No autorizado" });
+  }
+
+  const id = req.params.id;
+  const pub = readPublicaciones();
+
+  // Buscar índice
+  const index = pub.publicaciones.findIndex(
+    p => String(p.id) === String(id)
+  );
+
+  if (index === -1) {
+    return res.status(404).json({ error: "Publicación no encontrada" });
+  }
+
+  // Eliminar
+  const eliminada = pub.publicaciones.splice(index, 1)[0];
+
+  savePublicaciones(pub);
+
+  res.json({
+    mensaje: "Publicación eliminada",
+    eliminado: eliminada
+  });
+});
 
 
 // ---------------------- AUTENTICACIÓN ----------------------
