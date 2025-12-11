@@ -645,3 +645,25 @@ footer {
 @media (max-width: 800px) {
     #checkout-container { flex-direction:column; }
 }
+
+/* Tarjeta profesional del resumen */
+.resumen-card {
+    max-width: 420px;
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+    margin: 25px auto;
+    border-left: 6px solid #4CAF50;
+    font-family: 'Poppins', sans-serif;
+    opacity: 0;
+    transform: translateY(15px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.resumen-card h3 {
+    margin-top: 0;
+    color: #2e7d32;
+    font-size: 20px;
+    font-weight: 600;
+}
