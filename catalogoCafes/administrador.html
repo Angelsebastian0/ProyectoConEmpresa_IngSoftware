@@ -1,0 +1,101 @@
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const user = JSON.parse(sessionStorage.getItem("user") || "null");
+
+  if (!user || user.rol !== "admin") {
+    alert("Acceso no autorizado");
+    window.location.href = "index.html";
+  }
+});
+</script>
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Administración</title>
+
+    <!-- Vinculas el CSS que me enviaste -->
+    <link rel="stylesheet" href="../css/estilos.css">
+
+    <style>
+        /* Estilos específicos para el panel admin */
+        .admin-container {
+            max-width: 900px;
+            margin: 140px auto 0;
+            padding: 40px;
+            background: #f0edd4;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px var(--sombra);
+            text-align: center;
+        }
+
+        .admin-container h1 {
+            color: var(--cafe-oscuro);
+            font-size: 36px;
+            margin-bottom: 25px;
+            font-weight: 700;
+        }
+
+        .admin-botones {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .admin-btn {
+            padding: 14px 30px;
+            background: var(--cafe-medio);
+            color: rgb(0, 0, 0);
+            font-size: 18px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: 0.3s;
+            text-decoration: none;
+        }
+
+        .admin-btn:hover {
+            background: var(--cafe-hover);
+            transform: translateY(-3px);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR PREMIUM -->
+    <nav class="navbar">
+        <div class="nav-inner">
+            <ul class="nav-links">
+                <li><a href="../index.html">Inicio</a></li>
+            </ul>
+
+            <div class="nav-logo">Administrador</div>
+
+            <div class="nav-auth">
+                <a href="../index.html" class="btn-secundario">Cerrar sesión</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- CONTENIDO -->
+    <div class="admin-container">
+        <h1>Panel de Administración</h1>
+        <p>Selecciona una sección para gestionar:</p>
+
+        <div class="admin-botones">
+            <a href="admin/inventario.html" class="admin-btn">📦 Modificar Inventario</a>
+            <a href="gestionPedidos.html" class="admin-btn">📝 Gestión de Pedidos</a>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <p>© 2025 Crossing Families Coffee — Panel Administrador</p>
+    </footer>
+</body>
+</html>
+

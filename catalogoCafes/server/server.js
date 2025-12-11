@@ -443,6 +443,164 @@ app.post("/pedidos/:id/confirm", async (req, res) => {
   }
 });
 
+// ---------------------- PEDIDOS / CHECKOUT ----------------------
+app.post("/pedidos", async (req, res) => {
+  try {
+    const { customer, items, total, paymentMethod } = req.body;
+
+    if (!customer || !items || !Array.isArray(items) || items.length === 0) {
+      return res.status(400).json({ error: "Datos de pedido incompletos" });
+    }
+
+    const db = readDB();
+    const pedido = {
+      id: String(Date.now()),
+      customer,
+      items,
+      total,
+      paymentMethod: paymentMethod || "nequi",
+      status: "Pendiente",
+      createdAt: new Date().toISOString()
+    };
+
+    db.pedidos = db.pedidos || [];
+    db.pedidos.push(pedido);
+    saveDB(db);
+
+    res.json({ ok: true, pedidoId: pedido.id });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Error procesando el pedido" });
+  }
+});
+
+// Confirmar pedido: verifica stock, descuenta stock y envía factura en PDF
+app.post("/pedidos/:id/confirm", async (req, res) => {
+  try {
+    const pedidoId = req.params.id;
+    const db = readDB();
+    db.pedidos = db.pedidos || [];
+
+    const pIndex = db.pedidos.findIndex(p => String(p.id) === pedidoId);
+    if (pIndex === -1)
+      return res.status(404).json({ error: "Pedido no encontrado" });
+
+    const pedido = db.pedidos[pIndex];
+
+    if (pedido.status !== "Pendiente")
+      return res.status(400).json({ error: "Pedido no está en estado Pendiente" });
+
+    // Validar stock
+    const insufficient = [];
+    pedido.items.forEach(it => {
+      const prod = db.productos.find(p => String(p.id) === String(it.id));
+      const available = prod ? (prod.stock || 0) : 0;
+      if (!prod || available < it.cantidad) {
+        insufficient.push({
+          id: it.id,
+          nombre: it.nombre,
+          required: it.cantidad,
+          available,
+        });
+      }
+    });
+
+    if (insufficient.length > 0) {
+      return res.status(400).json({
+        error: "Stock insuficiente",
+        details: insufficient,
+      });
+    }
+
+    // Descontar stock
+    pedido.items.forEach(it => {
+      const prodIndex = db.productos.findIndex(p => String(p.id) === String(it.id));
+      if (prodIndex !== -1) {
+        db.productos[prodIndex].stock =
+          (db.productos[prodIndex].stock || 0) - it.cantidad;
+      }
+    });
+
+    // Actualizar estado
+    db.pedidos[pIndex].status = "Pagado";
+    db.pedidos[pIndex].paidAt = new Date().toISOString();
+
+    saveDB(db);
+
+    // Generar PDF
+    const doc = new PDFDocument();
+    const chunks = [];
+    doc.on("data", (chunk) => chunks.push(chunk));
+    const pdfPromise = new Promise((resolve) =>
+      doc.on("end", () => resolve(Buffer.concat(chunks)))
+    );
+
+    const { customer, items, total } = pedido;
+
+    doc.fontSize(20).text("Factura - Crossing Families Coffee", { align: "center" });
+    doc.moveDown();
+    doc.fontSize(12).text(`Pedido: ${pedido.id}`);
+    doc.text(`Fecha: ${pedido.createdAt}`);
+    doc.moveDown();
+    doc.text("Cliente:");
+    doc.text(customer.nombre);
+    doc.text(customer.direccion);
+    doc.text("Tel: " + customer.telefono);
+    doc.text("Email: " + customer.email);
+    doc.moveDown();
+
+    doc.text("Productos:");
+    items.forEach((it, i) => {
+      doc.text(
+        `${i + 1}. ${it.nombre} — ${it.cantidad} x $${it.precio} = $${it.cantidad * it.precio}`
+      );
+    });
+
+    doc.moveDown();
+    doc.text(`Total: $${total}`, { align: "right" });
+
+    doc.end();
+
+    const pdfBuffer = await pdfPromise;
+
+    // Enviar correo de factura (modo test si no hay SMTP)
+    let testAccount = await nodemailer.createTestAccount();
+
+    let transporter = nodemailer.createTransport({
+      host: testAccount.smtp.host,
+      port: testAccount.smtp.port,
+      secure: testAccount.smtp.secure,
+      auth: {
+        user: testAccount.user,
+        pass: testAccount.pass,
+      },
+    });
+
+    let info = await transporter.sendMail({
+      from: "no-reply@crossingcoffee.com",
+      to: customer.email,
+      subject: `Factura Pedido ${pedido.id}`,
+      text: `Adjuntamos la factura de su compra ${pedido.id}`,
+      attachments: [
+        {
+          filename: `factura-${pedido.id}.pdf`,
+          content: pdfBuffer,
+        },
+      ],
+    });
+
+    res.json({
+      ok: true,
+      pedidoId: pedido.id,
+      emailPreview: nodemailer.getTestMessageUrl(info),
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Error confirmando el pedido" });
+  }
+});
+
+
 app.listen(PORT, HOST, () => {
   console.log(`Servidor corriendo en http://localhost:${PORT}`);
 });
