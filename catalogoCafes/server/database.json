@@ -7,7 +7,7 @@
       "descripcion": "Café fermentado durante 48 horas.\n\n500g contenido neto",
       "precio": 60000,
       "imagen": "https://cdn.shopify.com/s/files/1/0022/7409/9299/files/custom_resized_10822d5f-f0dd-478d-84eb-5bbfa965c928_480x480.jpg?v=1650566558",
-      "stock": 9
+      "stock": 4
     },
     {
       "id": 1763601048694,
@@ -16,7 +16,7 @@
       "descripcion": "Café molido y seleccionado con el grano de mayor tamaño y aroma.\n\n500g contenido neto.",
       "precio": 45000,
       "imagen": "https://www.somoselcafe.com.ar/img/novedades/25.jpg",
-      "stock": 9
+      "stock": 7
     },
     {
       "id": 1763601100334,
@@ -25,7 +25,7 @@
       "descripcion": "Café molido y seleccionado con el grano de mayor tamaño y aroma.\n\n1000g contenido neto.",
       "precio": 75000,
       "imagen": "https://www.somoselcafe.com.ar/img/novedades/25.jpg",
-      "stock": 6
+      "stock": 1
     },
     {
       "id": "1763620064812",
@@ -540,6 +540,161 @@
       "status": "Pagado",
       "createdAt": "2025-12-10T17:58:55.839Z",
       "paidAt": "2025-12-10T17:58:55.844Z"
+    },
+    {
+      "id": "1765409460408",
+      "customer": {
+        "nombre": "asd",
+        "direccion": "asd",
+        "telefono": "3233851022",
+        "email": "byswap123@gmail.com"
+      },
+      "items": [
+        {
+          "id": 1763601048694,
+          "nombre": "Café AAA",
+          "precio": 45000,
+          "cantidad": 2
+        },
+        {
+          "id": 1763601100334,
+          "nombre": "Café AAA",
+          "precio": 75000,
+          "cantidad": 5
+        },
+        {
+          "id": 1763601004983,
+          "nombre": "Café Fermentado LH",
+          "precio": 60000,
+          "cantidad": 1
+        }
+      ],
+      "total": 525000,
+      "paymentMethod": "nequi",
+      "status": "Pagado",
+      "createdAt": "2025-12-10T23:31:00.408Z",
+      "paidAt": "2025-12-10T23:31:00.411Z"
+    },
+    {
+      "id": "1765409461758",
+      "customer": {
+        "nombre": "asd",
+        "direccion": "asd",
+        "telefono": "3233851022",
+        "email": "byswap123@gmail.com"
+      },
+      "items": [
+        {
+          "id": 1763601048694,
+          "nombre": "Café AAA",
+          "precio": 45000,
+          "cantidad": 2
+        },
+        {
+          "id": 1763601100334,
+          "nombre": "Café AAA",
+          "precio": 75000,
+          "cantidad": 5
+        },
+        {
+          "id": 1763601004983,
+          "nombre": "Café Fermentado LH",
+          "precio": 60000,
+          "cantidad": 1
+        }
+      ],
+      "total": 525000,
+      "paymentMethod": "nequi",
+      "status": "Pendiente",
+      "createdAt": "2025-12-10T23:31:01.758Z"
+    },
+    {
+      "id": "1765409736294",
+      "customer": {
+        "nombre": "asd",
+        "direccion": "asd",
+        "telefono": "3233851022",
+        "email": "byswap123@gmail.com"
+      },
+      "items": [
+        {
+          "id": 1763601004983,
+          "nombre": "Café Fermentado LH",
+          "precio": 60000,
+          "cantidad": 1
+        }
+      ],
+      "total": 60000,
+      "paymentMethod": "nequi",
+      "status": "Pagado",
+      "createdAt": "2025-12-10T23:35:36.294Z",
+      "paidAt": "2025-12-10T23:35:36.296Z"
+    },
+    {
+      "id": "1765409738326",
+      "customer": {
+        "nombre": "asd",
+        "direccion": "asd",
+        "telefono": "3233851022",
+        "email": "byswap123@gmail.com"
+      },
+      "items": [
+        {
+          "id": 1763601004983,
+          "nombre": "Café Fermentado LH",
+          "precio": 60000,
+          "cantidad": 1
+        }
+      ],
+      "total": 60000,
+      "paymentMethod": "nequi",
+      "status": "Pagado",
+      "createdAt": "2025-12-10T23:35:38.326Z",
+      "paidAt": "2025-12-10T23:35:38.329Z"
+    },
+    {
+      "id": "1765409739802",
+      "customer": {
+        "nombre": "asd",
+        "direccion": "asd",
+        "telefono": "3233851022",
+        "email": "byswap123@gmail.com"
+      },
+      "items": [
+        {
+          "id": 1763601004983,
+          "nombre": "Café Fermentado LH",
+          "precio": 60000,
+          "cantidad": 1
+        }
+      ],
+      "total": 60000,
+      "paymentMethod": "nequi",
+      "status": "Pagado",
+      "createdAt": "2025-12-10T23:35:39.802Z",
+      "paidAt": "2025-12-10T23:35:39.805Z"
+    },
+    {
+      "id": "1765411484283",
+      "customer": {
+        "nombre": "asd",
+        "direccion": "asd",
+        "telefono": "3233851022",
+        "email": "byswap123@gmail.com"
+      },
+      "items": [
+        {
+          "id": 1763601004983,
+          "nombre": "Café Fermentado LH",
+          "precio": 60000,
+          "cantidad": 1
+        }
+      ],
+      "total": 60000,
+      "paymentMethod": "nequi",
+      "status": "Pagado",
+      "createdAt": "2025-12-11T00:04:44.283Z",
+      "paidAt": "2025-12-11T00:04:44.287Z"
     }
   ]
 }
