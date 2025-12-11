@@ -7,7 +7,7 @@
       "descripcion": "Café fermentado durante 48 horas.\n\n500g contenido neto",
       "precio": 60000,
       "imagen": "https://cdn.shopify.com/s/files/1/0022/7409/9299/files/custom_resized_10822d5f-f0dd-478d-84eb-5bbfa965c928_480x480.jpg?v=1650566558",
-      "stock": 4
+      "stock": 1
     },
     {
       "id": 1763601048694,
@@ -46,22 +46,10 @@
       "rol": "admin",
       "carrito": [
         {
-          "id": 1763601048694,
-          "nombre": "Café AAA",
-          "precio": 45000,
-          "cantidad": 2
-        },
-        {
-          "id": 1763601100334,
-          "nombre": "Café AAA",
-          "precio": 75000,
-          "cantidad": 5
-        },
-        {
           "id": 1763601004983,
           "nombre": "Café Fermentado LH",
           "precio": 60000,
-          "cantidad": 1
+          "cantidad": 5
         }
       ]
     },
@@ -717,6 +705,27 @@
       "status": "Pagado",
       "createdAt": "2025-12-11T01:49:36.008Z",
       "paidAt": "2025-12-11T01:49:36.011Z"
+    },
+    {
+      "id": "1765427039624",
+      "customer": {
+        "nombre": "asd",
+        "direccion": "asd",
+        "telefono": "3233851022",
+        "email": "byswap123@gmail.com"
+      },
+      "items": [
+        {
+          "id": 1763601004983,
+          "nombre": "Café Fermentado LH",
+          "precio": 60000,
+          "cantidad": 5
+        }
+      ],
+      "total": 300000,
+      "paymentMethod": "nequi",
+      "status": "Pendiente",
+      "createdAt": "2025-12-11T04:23:59.624Z"
     }
   ]
 }

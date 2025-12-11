@@ -969,7 +969,7 @@ body {
 
 /* TARJETA DE PUBLICACIÓN */
 .pub-card {
-    background: #7a7a7a;
+    background: #ddd8cd;
     border-radius: 14px;
     box-shadow: 0 3px 8px rgba(0,0,0,0.15);
     overflow: hidden;  /* importante para que la imagen respete los bordes */
