@@ -57,6 +57,17 @@ function updateUIForSession(user) {
   const inventarioLink = document.querySelector('a[href="inventario.html"]') || document.getElementById("link-inventario");
   const nombreDisplay = document.getElementById("user-name-display");
 
+  const btnAdmin = document.getElementById("btn-admin");
+
+  if (btnAdmin) {
+    if (user && user.rol === "admin") {
+      btnAdmin.classList.remove("hidden");
+    } else {
+      btnAdmin.classList.add("hidden");
+    }
+  }
+
+
   if (user) {
     if (btnLogout) btnLogout.classList.remove("hidden");
     if (loginBtn) loginBtn.classList.add("hidden");
@@ -196,6 +207,13 @@ function wireAuthUI() {
       tLogin.classList.remove("active");
     });
   }
+  const btnAdmin = document.getElementById("btn-admin");
+  if (btnAdmin) {
+    btnAdmin.addEventListener("click", () => {
+      window.location.href = "administrador.html";
+    });
+  }
+
 }
 
 document.addEventListener("DOMContentLoaded", () => {
