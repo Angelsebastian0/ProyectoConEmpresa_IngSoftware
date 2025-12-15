@@ -139,6 +139,22 @@
       "clave": "1234",
       "rol": "cliente",
       "carrito": []
+    },
+    {
+      "id": 1765427824852,
+      "nombre": "admin",
+      "correo": "admin@gmail.com",
+      "clave": "123",
+      "rol": "cliente",
+      "carrito": []
+    },
+    {
+      "id": 1765428026223,
+      "nombre": "Admin",
+      "correo": "admin@homail.com",
+      "clave": "12345",
+      "rol": "cliente",
+      "carrito": []
     }
   ],
   "pedidos": [
