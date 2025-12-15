@@ -969,7 +969,7 @@ body {
 
 /* TARJETA DE PUBLICACIÓN */
 .pub-card {
-    background: #7a7a7a;
+    background: #ddd8cd;
     border-radius: 14px;
     box-shadow: 0 3px 8px rgba(0,0,0,0.15);
     overflow: hidden;  /* importante para que la imagen respete los bordes */
@@ -1054,4 +1054,236 @@ body {
     margin-top: 10px;
     display: none;
 
+}
+
+
+/*Reservas*/
+
+.reservas-section {
+    display: flex;
+    flex-direction: column; /* Para que los elementos queden uno debajo del otro */
+    align-items: center;    /* Centra horizontalmente */
+    justify-content: center; /* Centra verticalmente si tiene altura */
+    text-align: center;     /* Centra el texto dentro de los elementos */
+    margin: 50px 0;         /* Espaciado superior e inferior */
+}
+
+/* Contenedor de fechas */
+.fechas-disponibles {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+/* Tarjetas individuales de fecha */
+.fecha-card {
+    width: 130px;
+    padding: 15px;
+    border-radius: 12px;
+    text-align: center;
+    cursor: pointer;
+    transition: 0.3s ease;
+    font-family: "Poppins", sans-serif;
+}
+
+.fecha-card h3 { margin: 0; font-size: 22px; }
+.fecha-card span { font-size: 13px; }
+
+.fecha-card.disponible {
+    background-color: var(--beige-claro); /* adaptado a nuevo-estilo.css */
+    border: 2px solid var(--cafe-medio);
+    color: var(--cafe-oscuro);
+}
+
+.fecha-card.no-disponible {
+    background-color: var(--beige-oscuro);
+    border: 2px solid var(--cafe-claro);
+    color: #7a6a5a;
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.fecha-card.disponible:hover {
+    transform: scale(1.05);
+    background-color: var(--beige-hover);
+}
+
+.fecha-card.seleccionada {
+    background-color: var(--cafe-oscuro);
+    color: white;
+    border-color: var(--cafe-oscuro);
+    transform: scale(1.08);
+}
+
+/* Contenedor principal del formulario */
+.formulario-reserva {
+    width: 90%;
+    max-width: 600px;
+    margin: 50px auto;
+    text-align: center;
+}
+
+/* Tarjeta del formulario */
+.form-card {
+    background: var(--blanco);
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: var(--sombra);
+    margin-top: 20px;
+}
+
+/* Grupo de inputs */
+.form-group {
+    text-align: left;
+    margin-bottom: 18px;
+}
+
+.form-group label {
+    font-weight: 600;
+    display: block;
+    margin-bottom: 5px;
+    color: var(--cafe-oscuro);
+}
+
+.form-card input, 
+.form-card select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--cafe-claro);
+    border-radius: 10px;
+    font-size: 16px;
+}
+
+/* Botón principal */
+.reservar-btn {
+    margin-top: 10px;
+    padding: 12px 20px;
+    width: 100%;
+    font-size: 18px;
+    cursor: pointer;
+    background-color: var(--cafe-medio);
+    color: var(--blanco);
+    border-radius: 10px;
+    border: none;
+    transition: 0.3s;
+}
+
+.reservar-btn:hover {
+    background-color: var(--cafe-hover);
+}
+
+
+.servicios-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px;
+    margin-top: 25px;
+}
+
+.servicio-card {
+    background: var(--blanco);
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: var(--sombra);
+    text-align: center;
+    width: 300px;
+    transition: transform 0.3s ease;
+}
+
+.servicio-card:hover {
+    transform: translateY(-5px);
+}
+
+.servicio-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.exito {
+    color: var(--verde-exito);
+    margin-top: 15px;
+    font-weight: 600;
+}
+
+.error {
+    color: var(--rojo-error);
+    margin-top: 15px;
+    font-weight: 600;
+}
+
+.hidden {
+    display: none;
+}
+
+.resumen-card {
+    max-width: 420px;
+    background: var(--blanco);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: var(--sombra);
+    margin: 25px auto;
+    border-left: 6px solid var(--verde-exito);
+    font-family: 'Poppins', sans-serif;
+    opacity: 0;
+    transform: translateY(15px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.resumen-card h3 {
+    margin-top: 0;
+    color: var(--verde-exito);
+    font-size: 20px;
+    font-weight: 600;
+}
+
+/* Mensaje de éxito reservas */
+.exito {
+    color: #2ecc71; /* Verde brillante */
+    font-weight: 600;
+    margin-top: 15px;
+}
+
+.error {
+    color: #e74c3c; /* Rojo */
+    font-weight: 600;
+    margin-top: 15px;
+}
+
+
+.reservar-btn {
+    background-color: #4a3b2e; /* café oscuro */
+    color: #fff;               /* texto blanco */
+    font-weight: 600;
+    padding: 12px 20px;
+    border-radius: 8px;
+    width: 100%;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.3s;
+}
+
+.reservar-btn:hover {
+    background-color: #3a2c24;
+}
+
+
+.btn-whatsapp {
+    display: inline-block;
+    background-color: #25d366; /* verde WhatsApp */
+    color: #fff;
+    font-weight: 600;
+    padding: 12px 25px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 16px;
+    transition: 0.3s;
+}
+
+.btn-whatsapp:hover {
+    background-color: #1ebe57;
 }

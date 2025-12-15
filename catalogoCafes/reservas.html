@@ -5,36 +5,56 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reservas - Crossing Families Coffee</title>
 
+    <!-- TIPOGRAFÍA -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/estilos.css">
-</head>
 
+    <!-- NUEVO ESTILO PROFESIONAL -->
+    <link rel="stylesheet" href="css/nuevo-estilo.css">
+</head>
 <body>
 
-    <!-- NAVBAR -->
+    <!-- ──────────────────────────────── -->
+    <!-- NAVBAR PROFESIONAL -->
+    <!-- ──────────────────────────────── -->
     <nav class="navbar">
         <div class="nav-inner">
-            <div class="nav-logo">Crossing Families Coffee</div>
 
-            <button class="nav-toggle">
-                <span class="burger"></span>
-            </button>
-
+            <!-- IZQUIERDA: LINKS -->
             <ul class="nav-links">
                 <li><a href="index.html">Inicio</a></li>
                 <li><a href="catalogo.html">Catálogo</a></li>
                 <li><a href="anuncios.html">Anuncios</a></li>
                 <li><a href="reservas.html" class="active">Reservas</a></li>
             </ul>
+
+            <!-- CENTRO: LOGO -->
+            <div class="nav-logo">Crossing Families Coffee</div>
+
+            <!-- DERECHA: AUTENTICACIÓN -->
+            <div class="nav-auth">
+                <button id="btn-open-auth" class="btn-secundario">Iniciar sesión</button>
+                <button id="btn-open-auth-2" class="btn-principal">cambiar cuenta</button>
+                <button id="btn-admin" class="hidden btn-admin">Administrador</button>
+            </div>
+
+            <!-- HAMBURGUESA (MÓVIL) -->
+            <button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false">
+                <span class="burger"></span>
+            </button>
         </div>
     </nav>
 
+    <!-- ──────────────────────────────── -->
     <!-- HERO -->
+    <!-- ──────────────────────────────── -->
     <header class="hero">
         <h1>Reserva tu Visita</h1>
         <p>Agenda tu experiencia en la finca Crossing Families Coffee</p>
     </header>
 
+    <!-- ──────────────────────────────── -->
+    <!-- CONTENIDO -->
+    <!-- ──────────────────────────────── -->
     <main class="contenido">
 
         <!-- ACTIVIDADES -->
@@ -73,9 +93,7 @@
                 <!-- FECHAS EN EL FORMULARIO -->
                 <div class="form-group">
                     <label>Selecciona una fecha</label>
-
                     <div class="fechas-disponibles">
-
                         <div class="fecha-card disponible" data-fecha="2026-01-15">
                             <h3>15 Ene</h3>
                             <span>Disponible</span>
@@ -90,7 +108,6 @@
                             <h3>17 Ene</h3>
                             <span>No disponible</span>
                         </div>
-
                     </div>
                 </div>
 
@@ -121,19 +138,13 @@
                 </button>
             </form>
 
-            <!-- 📌 RESUMEN (AQUÍ APARECEN LOS DATOS DE LA RESERVA) -->
-            <div id="resumen" class="resumen-container" style="display:none; margin-top: 20px;">
-                <h3>Resumen de tu reserva</h3>
-                <p id="resumen-texto"></p>
+            <!-- Resumen de la reserva -->
+            <div id="resumenReserva" class="resumen-card" style="display:none;">
+                <h3>✔ Reserva Confirmada</h3>
+                <p id="resumenContenido"></p>
             </div>
 
-        <!-- 📌 TARJETA PROFESIONAL DE RESUMEN -->
-        <div id="resumenReserva" class="resumen-card" style="display:none;">
-            <h3>✔ Reserva Confirmada</h3>
-            <p id="resumenContenido"></p>
-        </div>
-
-            <!-- MENSAJES -->
+            <!-- Mensajes -->
             <p id="mensaje-exito" class="exito hidden">✔ Reserva realizada con éxito</p>
             <p id="mensaje-error" class="error hidden">✖ Por favor completa todos los campos correctamente</p>
         </section>
@@ -142,20 +153,89 @@
         <section class="reservas-section">
             <h2>¿Tienes dudas?</h2>
             <p>Comunícate con nosotros directamente por WhatsApp.</p>
-
             <a href="https://wa.me/573168124306?text=Hola,%20quisiera%20más%20información%20sobre%20las%20reservas"
-               class="btn-principal" target="_blank">
-                Contactar por WhatsApp
+                class="btn-whatsapp" target="_blank">
+                    Contactar por WhatsApp
             </a>
+
         </section>
+
+        </section>
+        
+            .      .
+
+        </section>
+
 
     </main>
 
-    <footer>
+    <!-- ──────────────────────────────── -->
+    <!-- FOOTER -->
+    <!-- ──────────────────────────────── -->
+    <footer class="footer">
         <p>© 2025 Crossing Families Coffee | Todos los derechos reservados.</p>
     </footer>
 
+    <!-- ──────────────────────────────── -->
+    <!-- MODAL DE AUTENTICACIÓN -->
+    <!-- ──────────────────────────────── -->
+    <div id="auth-modal" class="modal hidden">
+        <div class="auth-container">
+
+            <!-- TABS -->
+            <div class="auth-tabs">
+                <button id="tab-login" class="auth-tab active">Iniciar Sesión</button>
+                <button id="tab-register" class="auth-tab">Registrarse</button>
+            </div>
+
+            <!-- FORM LOGIN -->
+            <form id="panel-login" class="auth-panel">
+                <h2 class="auth-title">Iniciar Sesión</h2>
+
+                <label>Correo</label>
+                <input type="email" id="log-correo" required>
+
+                <label>Contraseña</label>
+                <input type="password" id="log-clave" required>
+
+                <button class="auth-btn" type="submit">Entrar</button>
+            </form>
+
+            <!-- FORM REGISTER -->
+            <form id="panel-register" class="auth-panel hidden">
+                <h2 class="auth-title">Registrarse</h2>
+
+                <label>Nombre completo</label>
+                <input type="text" id="reg-nombre" required>
+
+                <label>Correo</label>
+                <input type="email" id="reg-correo" required>
+
+                <label>Contraseña</label>
+                <input type="password" id="reg-clave" required>
+
+                <button class="auth-btn" type="submit">Crear cuenta</button>
+            </form>
+
+            <button id="auth-close" class="close-btn">X</button>
+        </div>
+    </div>
+
+    <!-- JS -->
     <script src="js/reservas.js"></script>
+    <script src="js/auth.js"></script>
+
+    <!-- SCRIPT MODAL AUTENTICACIÓN -->
+    <script>
+        const modal = document.getElementById("auth-modal");
+        const open1 = document.getElementById("btn-open-auth");
+        const open2 = document.getElementById("btn-open-auth-2");
+        const closeBtn = document.getElementById("auth-close");
+
+        open1.onclick = () => modal.classList.remove("hidden");
+        open2.onclick = () => modal.classList.remove("hidden");
+        closeBtn.onclick = () => modal.classList.add("hidden");
+    </script>
 
 </body>
 </html>

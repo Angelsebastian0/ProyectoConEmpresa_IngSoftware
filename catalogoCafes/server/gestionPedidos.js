@@ -1,60 +1,88 @@
-async function cargarDatos() {
-    const response = await fetch("http://localhost:3000/database");
-    const data = await response.json();
+// gestionPedidos.js (frontend) - lee server/database.json y muestra los pedidos
+(async function () {
+  const DB_URL = "/server/database.json"; // lectura directa del archivo JSON
 
-    const usuarios = data.usuarios;
-    const tbody = document.querySelector("#tablaPedidos tbody");
+  function mostrarError(msg) {
+    console.error(msg);
+    const cont = document.getElementById("error-container");
+    if (cont) cont.textContent = msg;
+  }
 
-    usuarios.forEach(usuario => {
-        if (usuario.rol !== "cliente") return; // solo clientes
+  async function cargarPedidos() {
+    try {
+      const res = await fetch(DB_URL);
+      if (!res.ok) throw new Error(`Error al leer database.json (${res.status})`);
+      const db = await res.json();
 
-        const carrito = usuario.carrito;
+      const pedidos = Array.isArray(db.pedidos) ? db.pedidos : [];
+      const tbody = document.getElementById("tabla-pedidos");
+      if (!tbody) {
+        mostrarError("No se encontró el elemento #tabla-pedidos en el DOM.");
+        return;
+      }
+      tbody.innerHTML = "";
 
-        let total = carrito.reduce((acc, item) => acc + item.precio * item.cantidad, 0);
+      if (pedidos.length === 0) {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `<td colspan="4"><i>No hay pedidos</i></td>`;
+        tbody.appendChild(tr);
+        return;
+      }
 
-        // Convertir los productos a texto
-        let productosHTML = carrito.length === 0 
-            ? "<i>Sin productos</i>"
-            : carrito.map(p => `
-                <div>
-                    <strong>${p.nombre}</strong> — ${p.cantidad} und — $${p.precio}
-                </div>
-            `).join("");
-
-        // Crear fila
+      pedidos.forEach(pedido => {
         const fila = document.createElement("tr");
 
-        fila.innerHTML = `
-            <td>${usuario.nombre}</td>
-            <td>${usuario.correo}</td>
-            <td>${productosHTML}</td>
-            <td>$${total}</td>
-            <td>
-                <select onchange="cambiarEstado(${usuario.id}, this.value)">
-                    <option value="en espera">En espera</option>
-                    <option value="enviado">Enviado</option>
-                </select>
-            </td>
-        `;
+        // Nombre
+        const tdNombre = document.createElement("td");
+        tdNombre.textContent = pedido.customer?.nombre || "—";
+        fila.appendChild(tdNombre);
+
+        // Correo
+        const tdCorreo = document.createElement("td");
+        tdCorreo.textContent = pedido.customer?.email || "—";
+        fila.appendChild(tdCorreo);
+
+        // Items
+        const tdItems = document.createElement("td");
+        tdItems.classList.add("pedido-lista");
+        tdItems.innerHTML = Array.isArray(pedido.items) && pedido.items.length > 0
+          ? pedido.items.map(i => `${i.nombre} (x${i.cantidad}) ${i.precio ? '- $' + i.precio : ''}`).join("<br>")
+          : "<i>Sin items</i>";
+        fila.appendChild(tdItems);
+
+        // Estado (solo visual, no persiste)
+        const tdEstado = document.createElement("td");
+        const select = document.createElement("select");
+
+        const opciones = ["Pendiente", "Pagado", "Enviado", "Cancelado"];
+        opciones.forEach(op => {
+          const opt = document.createElement("option");
+          opt.value = op;
+          opt.textContent = op;
+          if ((pedido.status || "").toLowerCase() === op.toLowerCase()) opt.selected = true;
+          select.appendChild(opt);
+        });
+
+        // Al cambiar estado solo mostramos (NO intentamos persistir)
+        select.addEventListener("change", () => {
+          alert(`Cambio local: estado ${select.value} (no persistido)`);
+        });
+
+        tdEstado.appendChild(select);
+        fila.appendChild(tdEstado);
 
         tbody.appendChild(fila);
-    });
-}
+      });
 
-// Guardar el estado del pedido del cliente
-async function cambiarEstado(usuarioId, estado) {
-    const response = await fetch(`http://localhost:3000/usuarios/${usuarioId}`);
-    const usuario = await response.json();
+    } catch (err) {
+      mostrarError("Error cargando pedidos: " + (err.message || err));
+    }
+  }
 
-    usuario.estadoPedido = estado;
-
-    await fetch(`http://localhost:3000/usuarios/${usuarioId}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(usuario)
-    });
-
-    alert(`Estado actualizado a: ${estado}`);
-}
-
-cargarDatos();
+  // Ejecutar al cargar la página
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", cargarPedidos);
+  } else {
+    cargarPedidos();
+  }
+})();

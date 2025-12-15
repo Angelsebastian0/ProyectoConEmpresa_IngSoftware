@@ -3,146 +3,107 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestión de Pedidos</title>
+    <title>Gestión de Pedidos | Crossing Families Coffee</title>
+
+    <!-- TIPOGRAFÍA -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <!-- MISMO ESTILO PROFESIONAL DEL INVENTARIO -->
+    <link rel="stylesheet" href="../css/nuevo-estilo.css">
+
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            padding: 20px;
+        /* Contenedor principal */
+        .contenedor-pedidos {
+            max-width: 1100px;
+            margin: 140px auto 40px;
+            background: #f0edd4;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px var(--sombra);
         }
 
         h1 {
             text-align: center;
+            color: var(--cafe-oscuro);
+            margin-bottom: 20px;
         }
 
+        /* Tabla */
         table {
             width: 100%;
             border-collapse: collapse;
-            background: white;
-            box-shadow: 0 0 5px rgba(0,0,0,0.1);
+            background: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
         }
 
-        th, td {
-            padding: 12px;
-            border-bottom: 1px solid #ddd;
-            text-align: left;
-        }
-
-        th {
-            background-color: #333;
+        thead {
+            background: var(--cafe-oscuro);
             color: white;
         }
 
-        select {
-            padding: 6px;
-            border-radius: 5px;
+        th, td {
+            padding: 14px;
+            border-bottom: 1px solid #ddd;
         }
 
-        .pedido-lista {
+        tbody tr:hover {
+            background: #f5f2e8;
+        }
+
+        select {
+            padding: 6px 10px;
+            border-radius: 6px;
+            border: 1px solid #aaa;
+            background: #fff;
             font-size: 14px;
         }
     </style>
 </head>
 <body>
 
-<h1>Gestión de Pedidos</h1>
+    <!-- NAVBAR -->
+  <nav class="navbar">
+      <div class="nav-inner">
+          <div class="nav-logo">Crossing Families Coffee — Admin</div>
+          <button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false">
+              <span class="burger"></span>
+          </button>
+          <ul class="nav-links">
+              <li><a href="/index.html">Inicio</a></li>
+              <li><a href="/catalogo.html">Catálogo</a></li>
+              <li><a href="/anuncios.html">Anuncios</a></li>
+              <li><a href="inventario.html" class="active">Inventario</a></li>
+          </ul>
+      </div>
+  </nav>
 
-<table>
-    <thead>
-        <tr>
-            <th>Nombre</th>
-            <th>Correo</th>
-            <th>Pedido</th>
-            <th>Estado</th>
-        </tr>
-    </thead>
-    <tbody id="tabla-pedidos"></tbody>
-</table>
+    <!-- CONTENEDOR -->
+    <div class="contenedor-pedidos">
+        <h1>Gestión de Pedidos</h1>
 
-<script>
-    const data = {
-        "pedidos": [
-            {
-                "id": "1764902036073",
-                "customer": {
-                    "nombre": "tomas",
-                    "direccion": "calle 20 sur",
-                    "telefono": "3022437015",
-                    "email": "tcardonae@unal.edu.co"
-                },
-                "items": [
-                    { "nombre": "Café AAA", "cantidad": 1 },
-                    { "nombre": "Café Fermentado LH", "cantidad": 2 },
-                    { "nombre": "Café AAA", "cantidad": 1 }
-                ],
-                "total": 240000,
-                "status": "Pagado"
-            },
-            {
-                "id": "1764902479153",
-                "customer": {
-                    "nombre": "Tomás Cardona",
-                    "direccion": "Calle 47 norte b 03",
-                    "telefono": "3022437015",
-                    "email": "tomascardes@gmail.com"
-                },
-                "items": [
-                    { "nombre": "Café Fermentado LH", "cantidad": 2 }
-                ],
-                "total": 120000,
-                "status": "Pagado"
-            }
-        ]
-    };
+        <table>
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Correo</th>
+                    <th>Pedido</th>
+                    <th>Estado</th>
+                </tr>
+            </thead>
 
-    const tbody = document.getElementById("tabla-pedidos");
+            <tbody id="tabla-pedidos"></tbody>
+        </table>
+    </div>
 
-    data.pedidos.forEach(pedido => {
-        const fila = document.createElement("tr");
+    <!-- FOOTER -->
+    <footer class="footer">
+        <p>© 2025 Crossing Families Coffee — Panel Administrador</p>
+    </footer>
 
-        // Nombre
-        const tdNombre = document.createElement("td");
-        tdNombre.textContent = pedido.customer.nombre;
-        fila.appendChild(tdNombre);
-
-        // Correo
-        const tdCorreo = document.createElement("td");
-        tdCorreo.textContent = pedido.customer.email;
-        fila.appendChild(tdCorreo);
-
-        // Pedido (lista de items)
-        const tdPedido = document.createElement("td");
-        tdPedido.innerHTML = pedido.items
-            .map(i => `${i.nombre} (x${i.cantidad})`)
-            .join("<br>");
-        tdPedido.classList.add("pedido-lista");
-        fila.appendChild(tdPedido);
-
-        // Estado (selector)
-        const tdEstado = document.createElement("td");
-        const select = document.createElement("select");
-
-        const opciones = ["Enviado", "En espera"];
-        opciones.forEach(op => {
-            const opt = document.createElement("option");
-            opt.value = op;
-            opt.textContent = op;
-            select.appendChild(opt);
-        });
-
-        // Estado por defecto (siempre inicia en "En espera")
-        select.value = "En espera";
-
-        select.addEventListener("change", () => {
-            console.log(`Pedido ${pedido.id} cambiado a: ${select.value}`);
-        });
-
-        tdEstado.appendChild(select);
-        fila.appendChild(tdEstado);
-
-        tbody.appendChild(fila);
-    });
-</script>
+    <!-- SCRIPT ORIGINAL (NO MODIFICADO) -->
+    <script src="server/gestionPedidos.js"></script>
 
 </body>
 </html>

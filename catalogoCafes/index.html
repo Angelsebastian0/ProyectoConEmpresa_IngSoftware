@@ -8,8 +8,147 @@
     <!-- TIPOGRAFÍA -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
-    <!-- NUEVO ESTILO PROFESIONAL -->
+    <!-- ESTILO PROFESIONAL -->
     <link rel="stylesheet" href="css/nuevo-estilo.css">
+
+    <style>
+        /* Sección hero gigante */
+        .hero-grande {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: url('img/hero.jpeg') no-repeat center center/cover;
+            height: 90vh;
+            color: #fff;
+            position: relative;
+        }
+        .hero-grande::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,0.4);
+        }
+        .hero-grande h1, .hero-grande p {
+            position: relative;
+            z-index: 1;
+        }
+        .hero-grande h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        .hero-grande p {
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+        }
+        .botones-home {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            z-index: 1;
+        }
+
+        /* Sección quiénes somos */
+        .quienes-somos {
+            background: #f7f3ee;
+            padding: 60px 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .quienes-somos-container {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            max-width: 800px;
+            margin: 40px auto;
+        }
+        .quienes-somos img {
+            width: 100%;
+            max-width: 350px; /* aquí limitamos el tamaño de la imagen */
+            height: auto;
+            border-radius: 15px;
+            object-fit: cover;
+        }
+        
+        .quienes-somos-texto {
+            flex: 1;
+            min-width: 250px;
+        }
+        .quienes-somos-text h2 {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            color: #4a3b2e;
+        }
+
+        .quienes-somos-text p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #5a4b3c;
+        }
+
+        .video-section {
+            max-width: 900px;
+            margin: 60px auto;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .video-section h2 {
+            font-size: 28px;
+            margin-bottom: 15px;
+            color: #4a2c2a;
+        }
+
+        .video-section p {
+            font-size: 16px;
+            margin-bottom: 30px;
+            color: #555;
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 ratio */
+            height: 0;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+            border-radius: 15px;
+        }
+
+        @media (max-width: 800px) {
+            .quienes-somos-contenedor {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+
+        @media (max-width: 800px) {
+            .quienes-somos {
+                flex-direction: column;
+                text-align: center;
+            }
+            .quienes-somos-text {
+                text-align: center;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -48,90 +187,100 @@
         </div>
     </nav>
 
-    <!-- ──────────────────────────────── -->
-    <!-- HERO -->
-    <!-- ──────────────────────────────── -->
-    <header class="hero">
+    <!-- HERO GRANDE -->
+    <header class="hero-grande">
         <h1>Crossing Families Coffee</h1>
         <p>Llevando el sabor de Nariño a la mesa de todos los Colombianos</p>
-    </header>
-
-    <!-- ──────────────────────────────── -->
-    <!-- CONTENIDO -->
-    <!-- ──────────────────────────────── -->
-    <main class="contenido">
-        <h2>Descubre nuestros productos</h2>
-        <p>Explora nuestro catálogo o mantente al día con nuestras últimas novedades.</p>
-        
         <div class="botones-home">
             <a href="catalogo.html" class="btn-principal">Ver Catálogo</a>
-            <a href="anuncios.html" class="btn-secundario">Ver Anuncios</a>
-            <a href="reservas.html" class="btn-simple">Reservas</a>
+            <a href="reservas.html" class="btn-principal">Reservar Visita</a>
+            <a href="anuncios.html" class="btn-principal">Ver Anuncios</a>
         </div>
-    </main>
+    </header>
+
+    <!-- QUIÉNES SOMOS -->
+    <section class="quienes-somos">
+        <div class="quienes-somos-container">
+            <img src="img/finca-equipo.png" alt="Equipo de la finca">
+            <div class="quienes-somos-texto">
+                <h2>¿Quiénes Somos?</h2>
+                <p> Somos Crossing Families Coffee, una marca que promete llevar el mejor café nariñense a la mesa de todos y cada uno de los colombianos.<p>
+                <p> Llevamos más de 70 años produciendo café de la mejor calidad en la finca "La Gaviota", ubicada en Colón Genova, Nariño.</p>
+                <p> Nuestro compromiso es con la tierra cafetera, llevando a cabo todos y cada uno de nuestros procesos de manera ética y recta, cuidando no solo de nuestro producto, sino tambien de nuestro patrimonio Nariñense.</p>
+            </div>
+        </div>
+    </section>
 
     <!-- ──────────────────────────────── -->
-    <!-- FOOTER -->
+    <!-- SECCIÓN DE VIDEO -->
     <!-- ──────────────────────────────── -->
+    <section class="video-section">
+        <h2>Conoce nuestro proceso actual</h2>
+        <p> Mira este video para descubrir quienes somos y qué queremos lograr.</p>
+
+        <div class="video-container">
+            <iframe 
+                src="https://www.youtube.com/embed/5WaJXSVxQls" 
+                title="Video de Crossing Families Coffee" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen>
+            </iframe>
+        </div>
+    </section>
+
+    <section class="reservas-section">
+        <h2>¿Quieres conocernos mejor?</h2>
+        <p>Comunícate con nosotros directamente por WhatsApp.</p>
+        <a href="https://wa.me/573168124306?text=Hola,%20quisiera%20más%20información%20sobre%20la%20finca%20La%20Gaviota"
+            class="btn-whatsapp" target="_blank">
+                Contactar por WhatsApp
+        </a>
+
+    </section>
+
+
+
+    <!-- FOOTER -->
     <footer class="footer">
         <p>© 2025 Crossing Families Coffee | Todos los derechos reservados.</p>
     </footer>
 
-    <!-- ──────────────────────────────── -->
     <!-- MODAL DE AUTENTICACIÓN -->
-    <!-- ──────────────────────────────── -->
     <div id="auth-modal" class="modal hidden">
         <div class="auth-container">
-
-        <!-- TABS -->
             <div class="auth-tabs">
                 <button id="tab-login" class="auth-tab active">Iniciar Sesión</button>
                 <button id="tab-register" class="auth-tab">Registrarse</button>
             </div>
-
-        <!-- FORM LOGIN -->
             <form id="panel-login" class="auth-panel">
                 <h2 class="auth-title">Iniciar Sesión</h2>
-
                 <label>Correo</label>
                 <input type="email" id="log-correo" required>
-
                 <label>Contraseña</label>
                 <input type="password" id="log-clave" required>
-
                 <button class="auth-btn" type="submit">Entrar</button>
             </form>
-
-        <!-- FORM REGISTER -->
             <form id="panel-register" class="auth-panel hidden">
                 <h2 class="auth-title">Registrarse</h2>
-
                 <label>Nombre completo</label>
                 <input type="text" id="reg-nombre" required>
-
                 <label>Correo</label>
                 <input type="email" id="reg-correo" required>
-
                 <label>Contraseña</label>
                 <input type="password" id="reg-clave" required>
-
                 <button class="auth-btn" type="submit">Crear cuenta</button>
             </form>
-
             <button id="auth-close" class="close-btn">X</button>
         </div>
     </div>
 
-    <!-- TU JS -->
     <script src="js/auth.js"></script>
-
-    <!-- SCRIPT ADICIONAL (modal) -->
     <script>
         const modal = document.getElementById("auth-modal");
         const open1 = document.getElementById("btn-open-auth");
         const open2 = document.getElementById("btn-open-auth-2");
         const closeBtn = document.getElementById("auth-close");
-
         open1.onclick = () => modal.classList.remove("hidden");
         open2.onclick = () => modal.classList.remove("hidden");
         closeBtn.onclick = () => modal.classList.add("hidden");
